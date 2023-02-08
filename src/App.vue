@@ -1,36 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  {{ inmueblesList }}
+  <HomePage/>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  mounted(){
-    this.$store.dispatch('AppInmuebles/getListInmuebles');
-  },
-  computed:{
-    inmueblesList(){  
-      console.log(this.$store.state.AppInmuebles.list)     
-      return this.$store.state.AppInmuebles.list;
-    }
-  }
-}
+<script setup>
+import HomePage from '@/pages/HomeApp.vue'
 </script>
 
 <style>
+  :root{
+    --color-primary:#2eca6a;
+    --color-secundary:white;
+    --color-text:black;
+  }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family:  Poppins, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100%;
+
+}
+
+*{
+  box-sizing: border-box;
+}
+html{
+  background-color: var(--color-secundary);
+  width: 100%;
+
+}
+a {
+  text-decoration: none;
+}
+li{
+  list-style: none;
 }
 </style>

@@ -189,8 +189,7 @@ export default {
 					method: 'post',
 				}).then( res => {
 					let {data} = res.data.data;
-					console.log(data)
-					ctx.commit('SET_LIST', data.slice(0, 4));
+					ctx.commit('SET_LIST', data);
 					resolve(true);
 				}).catch( err => {
 					resolve(false);
