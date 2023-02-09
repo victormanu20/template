@@ -1,54 +1,62 @@
 <template>
-  <div class=" card-box-a card-shadow" style="width: 18rem;" @click="()=>$emit('showDetail',true)">
+  <div class=" card-box-a card-shadow" style="width: 100%;" @click="handleShowDetail" v-if="props.inmueble" >
     <div class="img-box-a">
-      <img src="https://s.yimg.com/ny/api/res/1.2/0kG83sCQiW14KCRB10GoOQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTUyNw--/https://media.zenfs.com/en/smartasset_475/21759e36688ba0f43fc0796ca627e979" 
+      <img :src="props.inmueble.inmueble_imagenes[0].url" 
         class="img-a "
-        alt="...">
+        :alt="props.inmueble.titulo_inmueble">
     </div>
     <div class="card-overlay">
       <div class="card-overlay-a-content">
         <div class="card-header-a">
           <h2 class="card-title-a">
+            {{ props.inmueble.titulo_inmueble }}
           </h2>
         </div>
 
       </div>
     </div>
-    <div class="card-footer-a">
+    <div class="card-footer-a ">
       <ul class="card-info d-flex justify-content-around">
         <li>
           <h4 class="card-info-title">Area</h4>
-          <span>340m
-            <sup>2</sup>
+          <span class="card-info_detail">
+            {{props.inmueble.area_lote}} m<sup>2</sup>
           </span>
         </li>
         <li>
           <h4 class="card-info-title">Beds</h4>
-          <span>2</span>
+          <span class="card-info_detail">{{ props.inmueble.habitaciones }}</span>
         </li>
         <li>
           <h4 class="card-info-title">Baths</h4>
-          <span>4</span>
+          <span class="card-info_detail">{{ props.inmueble.banos }}</span>
         </li>
         <li>
           <h4 class="card-info-title">Garages</h4>
-          <span>1</span>
+          <!-- <span class="card-info_detail">{{ ( props.inmueble.parqueadero)? props.inmueble.parqueadero:"--" }}</span> -->
         </li>
       </ul>
     </div>
   </div>
 </template>
-<script setup>
-  import {defineProps} from 'vue';  
-  let props=defineProps({
-  inmueble: Object
-})
-  console.log(props)
-
-
+<script  setup>
+import {  defineProps,defineEmits } from 'vue';
+const emit = defineEmits(['showDetail']);
+const props = defineProps({
+  inmueble:{
+    type: Object
+  }
+});
+const handleShowDetail = () =>{
+  emit('showDetail',props.inmueble.slug)
+}
 </script>
 
 <style scoped>
+.card-title-a{
+  color: var(--color-secundary);
+  font-size: 1.3rem;
+}
 
 .img-box-a{
   width: 100%;
@@ -77,11 +85,10 @@
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-radius: 10px;
 }
 .card-box-a:hover{
   cursor: pointer;
-  box-shadow: 0 0 10px var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary);
 }
 .card-shadow {
   -webkit-backface-visibility: hidden;
@@ -100,7 +107,7 @@
 
 .img-a{
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
 .card-box-a .img-a{
   transition: .8s all ease-in-out;
@@ -125,6 +132,7 @@
 
   .card-box-a:hover .card-overlay-a-content {
     bottom: 60px;
+    left: 10px;
   }
   .card-box-a:hover .card-body-a {
     padding-bottom: 1rem;
@@ -134,15 +142,18 @@
   position: absolute;
   width: 100%;
   bottom: 0px;
+  padding: 0 4px;
   z-index: 2;
 }
-
+.card-info_detail{
+  color: var(--color-secundary);
+}
 .card-box-a:hover .card-overlay-a-content {
     bottom: 60px;
   }
 
   .card-overlay-a-content {
-    bottom: -20px;
+    bottom: -60px;
   }
 
   @media (min-width: 768px) and (min-width: 768px) {

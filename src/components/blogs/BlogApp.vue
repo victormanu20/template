@@ -10,7 +10,6 @@
 
 <script setup>
   import CardInmueble from '../inmuebles/components/CardInmueble.vue';
-  import DetInmueble from '../inmuebles/components/DetInmueble.vue'
 </script>
 
 <style scoped>
