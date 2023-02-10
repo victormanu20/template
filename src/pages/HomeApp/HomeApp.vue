@@ -1,10 +1,10 @@
 
 <template>
   <div  class="container__home">
-    <HomeApp/>
-    <CarrouselApp/>
-    <TableInmuebles/>
-    <BlogApp/>
+    <CarrouselAppHome/>
+    <InmueblesHome/>
+    <BlogsHome/>
+  
   </div>
 </template>
 
@@ -14,10 +14,11 @@
 // import { useStore } from 'vuex';
 
 // COMPONENTS
-import HomeApp from '@/components/header/HeaderApp.vue'
-import CarrouselApp from '@/components/carrousel/CarrouselApp.vue'
-import TableInmuebles from '@/components/inmuebles/TableInmuebles.vue'
-import BlogApp from '@/components/blogs/BlogApp.vue';
+// import HomeApp from '@/components/header/HeaderApp.vue'
+import CarrouselAppHome from './components/CarrouselApp.vue'
+import InmueblesHome from './components/InmueblesHome.vue'
+import BlogsHome from './components/HomeBlogs.vue'
+// import BlogApp from '@/components/blogs/BlogApp.vue';
 // const store = useStore()
 
 // const inmueblesList = computed( () => store.state.AppInmuebles.list)

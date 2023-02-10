@@ -1,9 +1,30 @@
 <template>
-  <HomePage/>
+  <div  class="container__home" id="App" v-if="state">
+    <HeaderApp/>
+    <main id="MainBody">
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script setup>
-import HomePage from '@/pages/HomeApp.vue'
+import { onMounted,ref } from 'vue';
+import { useStore } from 'vuex';
+// COMPONENTS
+import HeaderApp from '@/components/header/HeaderApp.vue';
+
+const store = useStore()
+
+let state = ref(false)
+
+onMounted(
+  ()  => {
+    store.dispatch('AppData/getData')
+    .then(() => {
+        state.value = true;
+      });
+  }
+)
 </script>
 
 <style>
@@ -18,6 +39,9 @@ import HomePage from '@/pages/HomeApp.vue'
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
 
+}
+#MainBody{
+  margin-top: 90px ;
 }
 
 *{

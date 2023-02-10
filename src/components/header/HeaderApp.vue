@@ -6,7 +6,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ">
+      <ul class="navbar-nav">
+          <li class="nav-item header__item">
+            <router-link to="/" class="nav-link active"  aria-current="page">Home</router-link>
+          </li>
+          <li class="nav-item header__item">
+            <router-link to="/inmuebles" class="nav-link">Inmuebles</router-link>
+          </li>
+      </ul>
+      <!-- <ul class="navbar-nav ">
         <li class="nav-item header__item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
@@ -24,13 +32,15 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </nav>
 </template>
 
 <script setup>
+
+
 </script>
 
 <style scoped>

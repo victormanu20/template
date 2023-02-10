@@ -6,48 +6,18 @@
         v-for="inmueble in inmueblesList" 
         :key="inmueble.id" 
         :inmueble="inmueble"  
-        @showDetail="showDetail"
         />
       </div>
     </div>
-      <VModal
-        v-if="sideBarState"
-        @close="sideClose"
-        titulo="Detalle del inmueble"
-        sideBar
-        size="md"
-      >
-          <DetailInmueble @showClose="showClose" :inmuebleSeleted="inmuebleSeleted"/>
-      </VModal>
 </template>
 
 <script setup>
 import { onMounted,computed} from 'vue';
 import { useStore } from 'vuex';
-  import CardInmueble from './components/CardInmueble.vue';
-  import VModal from "@/views/componente/modal";
-  import DetailInmueble from '../../pages/Inmuebles/components/DetailInmueble.vue'
+  import CardInmueble from '@/components/inmuebles/components/CardInmueble.vue';
 
   // import DetInmueble from './components/DetInmuebles/DetInmueble.vue'
-  import { ref } from 'vue';
 
-  let sideBarState=ref(false)
-  let inmuebleSeleted= ref({})
-
-
-
-async function showDetail(payload){ 
-  inmuebleSeleted.value=payload
-  sideOpen(true)
-}
-
-function sideClose(){
-  sideBarState.value =false;
-}
-
-function sideOpen(value){
-  sideBarState.value =value;
-}
 const store = useStore()
 const inmueblesList = computed( () => store.state.AppInmuebles.list)
 onMounted(
@@ -65,7 +35,7 @@ onMounted(
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 0 2rem;
+  padding: 0 20rem;
   z-index: 10;
 }
 

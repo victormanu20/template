@@ -189,7 +189,7 @@ export default {
 					method: 'post',
 				}).then( res => {
 					let {data} = res.data.data;
-					ctx.commit('SET_LIST', data);
+					ctx.commit('SET_LIST', data.slice(0, 4));
 					resolve(true);
 				}).catch( err => {
 					resolve(false);
