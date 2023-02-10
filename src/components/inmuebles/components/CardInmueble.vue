@@ -1,5 +1,5 @@
 <template>
-  <div class=" card-box-a card-shadow" style="width: 100%;" @click="handleShowDetail" v-if="props.inmueble" >
+  <div class=" card-box-a card-shadow" style="width: 100%;" @click="handleShowDetail(props.inmueble)" v-if="props.inmueble" >
     <div class="img-box-a">
       <img :src="props.inmueble.inmueble_imagenes[0].url" 
         class="img-a "
@@ -47,8 +47,8 @@ const props = defineProps({
     type: Object
   }
 });
-const handleShowDetail = () =>{
-  emit('showDetail',props.inmueble.slug)
+const handleShowDetail = (data) =>{
+  emit('showDetail',data)
 }
 </script>
 
@@ -132,7 +132,6 @@ const handleShowDetail = () =>{
 
   .card-box-a:hover .card-overlay-a-content {
     bottom: 60px;
-    left: 10px;
   }
   .card-box-a:hover .card-body-a {
     padding-bottom: 1rem;
@@ -152,21 +151,22 @@ const handleShowDetail = () =>{
     bottom: 60px;
   }
 
-  .card-overlay-a-content {
-    bottom: -60px;
-  }
+.card-overlay-a-content {
+  bottom: -60px;
+}
 
-  @media (min-width: 768px) and (min-width: 768px) {
-  .card-box-a:hover .card-overlay-a-content {
+  @media (max-width: 768px) {
+  .card-overlay-a-content {
     bottom: 60px;
   }
 }
 
-@media (min-width: 768px) and (min-width: 992px) {
+/* @media (min-width: 768px) and (min-width: 992px) {
   .card-box-a:hover .card-overlay-a-content {
     bottom: 64px;
+    background-color: blue;
   }
-}
+} */
 
 @media (min-width: 992px) {
   .card-box-a .price-a,

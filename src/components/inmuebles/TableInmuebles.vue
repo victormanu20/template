@@ -10,35 +10,43 @@
         />
       </div>
     </div>
-    <div v-show="showSlide">
-      <DetInmueble @showClose="showClose"/>
-    </div>
+      <VModal
+        v-if="sideBarState"
+        @close="sideClose"
+        titulo="Detalle del inmueble"
+        sideBar
+        size="md"
+      >
+          <DetailInmueble @showClose="showClose" :inmuebleSeleted="inmuebleSeleted"/>
+      </VModal>
 </template>
 
 <script setup>
 import { onMounted,computed} from 'vue';
 import { useStore } from 'vuex';
   import CardInmueble from './components/CardInmueble.vue';
-  import DetInmueble from './components/DetInmuebles/DetInmueble.vue'
+  import VModal from "@/views/componente/modal";
+  import DetailInmueble from './components/DetailInmueble.vue'
+
+  // import DetInmueble from './components/DetInmuebles/DetInmueble.vue'
   import { ref } from 'vue';
 
-  let showSlide=ref(false);
+  let sideBarState=ref(false)
+  let inmuebleSeleted= ref({})
 
 
 
-async function showDetail(payload){  
-  console.log(payload)  
-  await store.dispatch('AppInmuebles/getDetailInmuebles',payload);
-  showOpen(true)
+async function showDetail(payload){ 
+  inmuebleSeleted.value=payload
+  sideOpen(true)
 }
 
-function showClose(){
-  showSlide.value =false;
+function sideClose(){
+  sideBarState.value =false;
 }
 
-function showOpen(value){
-  showSlide.value =value;
-  console.log(showSlide.value)
+function sideOpen(value){
+  sideBarState.value =value;
 }
 const store = useStore()
 const inmueblesList = computed( () => store.state.AppInmuebles.list)
@@ -57,7 +65,7 @@ onMounted(
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 0 14rem;
+  padding: 0 2rem;
   z-index: 10;
 }
 
@@ -69,10 +77,9 @@ onMounted(
 .inmuebles__grid{
   display: grid;
   justify-items: center;
-  width: 100%;
-  gap: 2rem;
-  grid-template-columns: repeat(4,350px);
-  grid-auto-rows: 450px;
+  gap:2rem;
+  grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
+  grid-auto-rows: 24rem;
 }
 
 </style>
