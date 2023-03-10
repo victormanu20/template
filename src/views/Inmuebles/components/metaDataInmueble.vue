@@ -1,27 +1,28 @@
 <template>
   <div class=" container__dataInmueble">
       <div class="metaInmueble">
-			<div class="meta tipo">
+			<div class="meta tipo"  v-if="detail.tipo_inmueble">
 				<span class="label">Tipo de inmueble:</span> 
 				<span class="value">{{detail.tipo_inmueble.tipo}}</span>
 			</div>
-			<div class="meta tipo">
+			<div class="meta tipo" v-if="detail.tipo_negocio">
 				<span class="label">Tipo de negocio:</span> 
 				<span class="value"><b>{{detail.tipo_negocio.tipo}}</b></span>
 			</div>
-			<div class="meta direccion">
+			<div class="meta direccion" v-if="detail.direccion">
 				<span class="label">Direccion:</span>
-				<span class="value">{{detail.direccion}}</span>
+				<span class="value" >{{detail.direccion}}</span>
 			</div>
-			<div class="meta ciudad">
-				<span class="value">{{detail.ciudad_id.name}}, {{detail.estado_id.name}}</span>
+			<div class="meta ciudad" v-if="detail.ciudad_id && detail.estado_id">
+				<span class="value" >{{detail.ciudad_id.name}}, {{detail.estado_id.name}}</span>
 			</div>
-      <div class=" meta">
+      <div class=" meta"  v-if="detail.barrio_id">
         <span class="label">Barrio:</span>
-        <span class="value">{{detail.barrio_id.name}}</span>
+        <span class="value" >{{detail.barrio_id.name}}</span>
       </div>
-      <div class="anoConstrucion">
-				Año de construccion: {{detail.ano_construcion}}
+      <div class="anoConstrucion" v-if="detail.ano_construcion">
+				Año de construccion: 
+				{{detail.ano_construcion}}
 			</div>
 
       <h2 class="tituloDetalleInmueble">Descripción Inmueble</h2>
@@ -33,20 +34,20 @@
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="tableDetalleInmueble">
-												<div class="tableRow">
-													<span class="tableLablel">Habitaciones:</span>
+												<div class="tableRow"  v-if="detail.habitaciones">
+													<span class="tableLablel" >Habitaciones:</span>
 													<span class="tableValue">{{detail.habitaciones}}</span>
 												</div>
-												<div class="tableRow">
-													<span class="tableLablel">Baños:</span>
+												<div class="tableRow"  v-if="detail.banos">
+													<span class="tableLablel" >Baños:</span>
 													<span class="tableValue">{{detail.banos}}</span>
 												</div>
 												<div class="tableRow" v-if="detail.cantidad_parqueadero">
 													<span class="tableLablel">Parqueaderos:</span>
 													<span class="tableValue">{{detail.cantidad_parqueadero}}</span>
 												</div>
-												<div class="tableRow">
-													<span class="tableLablel">Pisos:</span>
+												<div class="tableRow" v-if="detail.pisos">
+													<span class="tableLablel" >Pisos:</span>
 													<span class="tableValue">{{detail.pisos}}</span>
 												</div>
 											</div>
@@ -59,27 +60,27 @@
 								<div class="row">
 									<div class="col-lg-12 col-md-6">
 										<div class="tableDetalleInmueble">
-											<div class="tableRow">
-												<span class="tableLabel">Area Lote:</span>
+											<div class="tableRow" v-if="detail.area_lote">
+												<span class="tableLabel"  >Area Lote:</span>
 												<span class="tableValue">{{detail.area_lote}} <span class="und">m<sup>2</sup></span></span>
 											</div>
-											<div class="tableRow">
-												<span class="tableLabel">Area Construida:</span>
+											<div class="tableRow" v-if="detail.area_contruida">
+												<span class="tableLabel" >Area Construida:</span>
 												<span class="tableValue">{{detail.area_contruida}} <span class="und">m<sup>2</sup></span></span>
 											</div>
-											<div class="tableRow">
-												<span class="tableLabel">Area Total:</span>
+											<div class="tableRow" v-if="detail.area_total">
+												<span class="tableLabel" >Area Total:</span>
 												<span class="tableValue">{{detail.area_total}} <span class="und">m<sup>2</sup></span></span>
 											</div>
 										</div>
 									</div>
 									<div class="col-lg-12 col-md-6">
 										<div class="tableDetalleInmueble">
-											<div class="tableRow">
+											<div class="tableRow" v-if="detail.fondo">
 												<span class="tableLabel">Fondo:</span>
 												<span class="tableValue">{{detail.fondo}} <span class="und">m<sup>2</sup></span></span>
 											</div>
-											<div class="tableRow">
+											<div class="tableRow" v-if="detail.frente">
 												<span class="tableLabel">Frente:</span>
 												<span class="tableValue">{{detail.frente}} <span class="und">m<sup>2</sup></span></span>
 											</div>
@@ -242,6 +243,8 @@ defineProps({
 			display: flex;
 			justify-content: space-between;
 			padding: 0 8px;
+			background-color: #ffffff;
+			border-bottom: 3px solid  #ebe9f1;
 		}
 
 		.tableDetalleInmueble .tableRow .tableValue:last-child {
@@ -251,13 +254,6 @@ defineProps({
 
 		.tableDetalleInmueble .tableRow span {
 			padding: 8px 13px;
-		}
-
-		.tableDetalleInmueble .tableRow:nth-child(odd) {
-			background: #f0f0f0;
-		}
-		.tableDetalleInmueble .tableRow:nth-child(even):last-child {
-			border-bottom: 1px solid #f0f0f0;
 		}
 
 		.textoDetalleInmueble > :first-child {

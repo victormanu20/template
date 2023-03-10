@@ -14,7 +14,7 @@
 <script setup>
 import { onMounted,computed} from 'vue';
 import { useStore } from 'vuex';
-  import CardInmueble from '@/components/inmuebles/components/CardInmueble.vue';
+  import CardInmueble from '@/components/inmuebles/CardInmueble.vue';
 
   // import DetInmueble from './components/DetInmuebles/DetInmueble.vue'
 

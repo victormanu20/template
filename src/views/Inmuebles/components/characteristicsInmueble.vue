@@ -6,9 +6,7 @@
     <div class=" textoDetalleInmueble mb-4">
       <p>{{detail.descripcion}}</p>
     </div>
-    
     <metaDataInmuble :detail="detail"/>
-
     <div class="wrapperDetalleInmueble attrGeneral mt-5 cols-lg-12">
       <div class="container">
         <div class="row">

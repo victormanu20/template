@@ -1,28 +1,32 @@
 <template>
   <div class="container__inmuebles">
     <h3 class="title__inmuebles">INMUEBLES</h3>
-
-    <div class="inmuebles__grid" v-if="inmueblesList.data">
-      <CardInmuebleList v-for="inmueble in inmueblesList.data" :key="inmueble.id" :inmueble="inmueble"
-        @showDetail="showDetail" />
+    <div class="main">
+      <FiltersInmuebles class="sideBar"></FiltersInmuebles>
+      <div class="body__main">
+          <div class="inmuebles__grid" v-if="inmueblesList.data">
+            <CardInmuebleList v-for="inmueble in inmueblesList.data" :key="inmueble.id" :inmueble="inmueble"
+              @showDetail="showDetail" />
+          </div>
+          <div >
+            <Pagination class="mx-n3" :LastPages="inmueblesList.last_page"  />
+          </div>
+      </div>
     </div>
   </div>
-  <VModal v-if="sideBarState" @close="sideClose" titulo="Detalle del inmueble" sideBar size="xs">
-    <DetailInmueble @showClose="showClose" :inmuebleSeleted="inmuebleSeleted" />
+  <VModal v-if="sideBarState" @close="sideClose" titulo="Detalle del inmueble" sideBar size="md">
+    <DetailInmueble  :inmuebleSeleted="inmuebleSeleted" />
   </VModal>
-  <div >
-    <Pagination class="mx-n3" :LastPages="inmueblesList.last_page"  />
-  </div>
 </template>
-
-
 
 <script setup>
 
+// COMPONENTES
 import CardInmuebleList from './components/cardInmuebleList.vue';
-import VModal from "@/views/componente/modal";
+import VModal from "@/components/modal.vue";
 import DetailInmueble from './components/DetailInmueble.vue';
 import Pagination from '@/components/PaginationMain.vue'
+import FiltersInmuebles from './components/FiltersInmuebles.vue';
 import { computed, onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 
@@ -51,38 +55,51 @@ function sideOpen(value) {
 }
 
 </script>
+<style>
+:root{
+  --background-color-filter:#f4f4f4;
+}
+
+</style>
 
 <style scoped>
 .container__inmuebles {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 0 15rem;
+  margin: 0 15rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
   z-index: 10;
 }
-
+.main{
+  display: flex;
+  gap: 2rem;
+}
+.sideBar{
+  width: 100%;
+  max-width: 250px;
+  padding: 16px;
+  background-color: var(--background-color-filter);
+  position:fixed;
+}
 @media (max-width:1400px) {
   .container__inmuebles {
-    padding: 0 10rem;
+    margin: 0 10rem;
   }
 }
 
 @media (max-width:900px) {
   .container__inmuebles {
-    padding: 0 5rem;
+    margin: 0 5rem;
   }
 }
 
 @media (max-width:600px) {
   .container__inmuebles {
-    padding: 0 2rem;
+    margin: 0 2rem;
   }
 }
-
-
-
 .title__inmuebles {
   border-bottom: 2px solid var(--color-primary);
   padding-bottom: 1rem;
@@ -92,8 +109,9 @@ function sideOpen(value) {
 .inmuebles__grid {
   display: grid;
   justify-items: center;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  grid-auto-rows: 30rem;
+  grid-gap: 1rem;
+  margin-left: 260px;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  grid-auto-rows: 34rem;
 }
 </style>

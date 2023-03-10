@@ -1,5 +1,5 @@
-import HomeApp from '@/pages/HomeApp/HomeApp'
-import ListInmuebles from '@/pages/Inmuebles/ListInmuebles'
+import HomeApp from '@/views/HomeApp/HomeApp'
+import ListInmuebles from '@/views/Inmuebles/ListInmuebles'
 // import Blogs from '@/pages/Blogs/Blogs'
 // import Blogs from '@/pages/Blogs/Blogs'
 // import InmuebleDetail from '@/components/view/inmueble/InmuebleDetail'

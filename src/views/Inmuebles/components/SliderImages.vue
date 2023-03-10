@@ -1,27 +1,15 @@
 <template>
-  <div v-if="listIMages.length>0">
+  <div v-if="listIMages.length>0" class="slider__images">
     <div ref="slider" id="mainCarousel" class="carousel">
       <div class="carousel__slide" v-for="(image,index) in listIMages" :key="index">
         <img :data-lazy-src="image.url" class="image-slider"/>
       </div>
-      <!-- <div class="carousel__slide">
-        <img data-lazy-src="https://lipsum.app/id/2/1920x600" />
-      </div>
-      <div class="carousel__slide">
-        <img data-lazy-src="https://lipsum.app/id/3/1920x600" />
-      </div> -->
     </div>
     
     <div ref="sliderThumbnails"  id="navCarousel" class="carousel">
       <div class="carousel__slide" v-for="(image,index) in listIMages" :key="index">
         <img :data-lazy-src="image.url" />
       </div>
-      <!-- <div class="carousel__slide">
-        <img data-lazy-src="https://lipsum.app/id/2/100x60" />
-      </div>
-      <div class="carousel__slide">
-        <img data-lazy-src="https://lipsum.app/id/3/100x60" />
-      </div> -->
     </div>
 
   </div>
@@ -48,7 +36,7 @@ const initSlider = () =>{
     Dots: false,
   });
   
-  const navCarousel=new Carousel(sliderThumbnails.value, {
+  new Carousel(sliderThumbnails.value, {
     Sync: {
       target: mainCarousel,
     },
@@ -59,7 +47,6 @@ const initSlider = () =>{
     center: true,
     slidesPerPage: 1,
   });
-  console.log(navCarousel)
 
 }
 
@@ -82,6 +69,10 @@ const initSlider = () =>{
       4px -1px;
 }
 
+.slider__images{
+  max-width: 700px;
+  margin: 0 auto;
+}
 .carousel__button.is-prev {
   left: -20px;
 }
@@ -90,7 +81,7 @@ const initSlider = () =>{
   right: -20px;
 }
 .image-slider{
-  max-height: 400px;
+  max-height: 500px;
 }
 
 .carousel__slide {
@@ -104,6 +95,7 @@ const initSlider = () =>{
 
 #navCarousel .carousel__slide {
   width: 100px;
+  max-width: 80px;
   margin: 0 5px;
   cursor: pointer;
 }

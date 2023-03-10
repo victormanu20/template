@@ -56,7 +56,6 @@
   height: 20rem;
 
 }
-
 }
 .carrousel__image{
   object-fit: cover;

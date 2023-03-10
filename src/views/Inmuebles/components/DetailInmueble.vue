@@ -1,6 +1,6 @@
 <template>
   <div class="container__slider">
-    <div class="col-md-12 col-lg-8">
+    <div class="col-md-12 col-lg-12">
       <div class="title-single-box">
         <h2 class="title-single">{{ inmuebleSeleted.titulo_inmueble }}</h2>
         <div class="container-slider__direction">
@@ -8,7 +8,7 @@
             <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
           </svg>
           <div class="detail__direction">
-            <span class="color-text-a">{{ inmuebleSeleted.estado_id.name }}, {{ inmuebleSeleted.ciudad_id.name }}, {{ inmuebleSeleted.barrio_id.name }}</span>
+            <span class="color-text-a"  v-if="inmuebleSeleted.estado_id && inmuebleSeleted.ciudad_id && inmuebleSeleted.barrio_id">{{ inmuebleSeleted.estado_id.name }}, {{ inmuebleSeleted.ciudad_id.name }}, {{ inmuebleSeleted.barrio_id.name }}</span>
             <span class="color-text-a">{{ inmuebleSeleted.direccion }}</span>
           </div>
         </div>

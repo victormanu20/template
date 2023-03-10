@@ -14,17 +14,16 @@
 <script setup>
 import { onMounted,computed} from 'vue';
 import { useStore } from 'vuex';
-import cardBlog from '@/components/blogs/components/cardBlog.vue';
 
-  // import DetInmueble from './components/DetInmuebles/DetInmueble.vue'
+//components
+import cardBlog from '@/components/blogs/cardBlog.vue';
 
-const store = useStore()
-const BlogsList = computed( () => store.state.AppBlog.grid.data)
+const store = useStore();
+const BlogsList = computed( () => store.state.AppBlog.grid.data);
 onMounted(
   ()  => {
     store.dispatch('AppInmuebles/getListInmuebles');
     store.dispatch('AppBlog/getBlogs');
-
   }
 )
 

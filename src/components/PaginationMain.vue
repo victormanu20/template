@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { defineProps,ref,watch } from 'vue';
+import { defineProps,ref,watch,onMounted } from 'vue';
 import { useStore } from 'vuex';
 const store = useStore()
 
@@ -36,9 +36,13 @@ let pageOn = ref(1)
 
 const props=defineProps({
   LastPages:{
-    type:Object
+    type:Number
   }
 })
+
+onMounted(() => {
+	console.log(props.LastPages)
+}),
 
 watch(pageOn ,()=>{
   console.log(pageOn.value);
