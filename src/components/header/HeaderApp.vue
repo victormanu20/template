@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary header__nav">
-  <div class="container-fluid">
+  <div class="container-fluid" style="background-color: white;">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -45,8 +45,11 @@
 
 <style scoped>
 .header__nav{
+  width: 100vw;
   height: 90px;
-  box-shadow: 0 4px 30px gainsboro;
+  box-shadow: 0 4px 30px white;
+  background-color: white !important;
+  z-index: 20;
 }
 
 .header__item{

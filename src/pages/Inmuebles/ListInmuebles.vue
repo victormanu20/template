@@ -7,7 +7,7 @@
         @showDetail="showDetail" />
     </div>
   </div>
-  <VModal v-if="sideBarState" @close="sideClose" titulo="Detalle del inmueble" sideBar size="md">
+  <VModal v-if="sideBarState" @close="sideClose" titulo="Detalle del inmueble" sideBar size="xs">
     <DetailInmueble @showClose="showClose" :inmuebleSeleted="inmuebleSeleted" />
   </VModal>
   <div >
@@ -58,7 +58,8 @@ function sideOpen(value) {
   flex-direction: column;
   gap: 2rem;
   padding: 0 15rem;
-  padding-top: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   z-index: 10;
 }
 
@@ -93,6 +94,6 @@ function sideOpen(value) {
   justify-items: center;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  grid-auto-rows: 24rem;
+  grid-auto-rows: 30rem;
 }
 </style>

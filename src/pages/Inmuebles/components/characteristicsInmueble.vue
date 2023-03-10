@@ -10,18 +10,21 @@
     <metaDataInmuble :detail="detail"/>
 
     <div class="wrapperDetalleInmueble attrGeneral mt-5 cols-lg-12">
-      <div class="row">
-        <div class="col">
-          <h2 class="tituloDetalleInmueble">Caracteristicas internas</h2>
-          <ul class="attrList">
-            <li class="itemAttrList" v-for="item in detail.caracteristicas_internas" :key="item.id">
-              <span class="textAttrList">
-                {{item.value}}
-              </span>
-            </li>
-          </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="tituloDetalleInmueble">Caracteristicas internas</h2>
+            <ul class="attrList">
+              <li class="itemAttrList" v-for="item in detail.caracteristicas_internas" :key="item.id">
+                <span class="textAttrList">
+                  {{item.value}}
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+      
       <div class="row mt-4">
         <div class="col">
           <h2 class="tituloDetalleInmueble">Caracteristicas Externas</h2>

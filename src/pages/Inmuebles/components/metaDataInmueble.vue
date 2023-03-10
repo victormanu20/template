@@ -29,29 +29,30 @@
       <div class="row detalleInmueble">
 						<div class="col">
 							<div class="wrapperDetalleInmueble descripcionGeneral">
-								
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="tableDetalleInmueble">
-											<div class="tableRow">
-												<span class="tableLablel">Habitaciones:</span>
-												<span class="tableValue">{{detail.habitaciones}}</span>
-											</div>
-											<div class="tableRow">
-												<span class="tableLablel">Baños:</span>
-												<span class="tableValue">{{detail.banos}}</span>
-											</div>
-											<div class="tableRow" v-if="detail.cantidad_parqueadero">
-												<span class="tableLablel">Parqueaderos:</span>
-												<span class="tableValue">{{detail.cantidad_parqueadero}}</span>
-											</div>
-											<div class="tableRow">
-												<span class="tableLablel">Pisos:</span>
-												<span class="tableValue">{{detail.pisos}}</span>
+								<div>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="tableDetalleInmueble">
+												<div class="tableRow">
+													<span class="tableLablel">Habitaciones:</span>
+													<span class="tableValue">{{detail.habitaciones}}</span>
+												</div>
+												<div class="tableRow">
+													<span class="tableLablel">Baños:</span>
+													<span class="tableValue">{{detail.banos}}</span>
+												</div>
+												<div class="tableRow" v-if="detail.cantidad_parqueadero">
+													<span class="tableLablel">Parqueaderos:</span>
+													<span class="tableValue">{{detail.cantidad_parqueadero}}</span>
+												</div>
+												<div class="tableRow">
+													<span class="tableLablel">Pisos:</span>
+													<span class="tableValue">{{detail.pisos}}</span>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								</div>						
 							</div>
 							<div class="wrapperDetalleInmueble areaGeneral mt-5">
 								<h2 class="tituloDetalleInmueble">Area del inmueble</h2>

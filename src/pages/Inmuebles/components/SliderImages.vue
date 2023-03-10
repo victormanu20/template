@@ -83,11 +83,11 @@ const initSlider = () =>{
 }
 
 .carousel__button.is-prev {
-  left: 70px;
+  left: -20px;
 }
 
 .carousel__button.is-next {
-  right: 70px;
+  right: -20px;
 }
 .image-slider{
   max-height: 400px;
@@ -109,7 +109,7 @@ const initSlider = () =>{
 }
 
 #navCarousel {
-  margin-top: -30px;
+  margin-top: -10px;
 }
 
 #navCarousel .carousel__slide img{
@@ -126,7 +126,7 @@ const initSlider = () =>{
   bottom: 0;
   left: 0;
   background-image: linear-gradient(to bottom right, #000, #131313);
-  opacity: 0.3;
+  opacity: 0.7;
 }
 
 </style>

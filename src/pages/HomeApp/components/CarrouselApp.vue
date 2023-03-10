@@ -10,7 +10,7 @@
         <img src="https://s.yimg.com/ny/api/res/1.2/0kG83sCQiW14KCRB10GoOQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTUyNw--/https://media.zenfs.com/en/smartasset_475/21759e36688ba0f43fc0796ca627e979" class="w-100 carrousel__image " alt="...">
       </div>
       <div class="carousel-item" data-bs-interval="3000">
-        <img src="https://s.wsj.net/public/resources/images/BN-XM808_camuto_M_20180215145322.jpg" class="d-block w-100" alt="...">
+        <img src="https://s.wsj.net/public/resources/images/BN-XM808_camuto_M_20180215145322.jpg" class="d-block w-100 carrousel__image" alt="...">
       </div>
       <div class="carousel-item " data-bs-interval="3000">
         <img src="https://s.yimg.com/ny/api/res/1.2/0kG83sCQiW14KCRB10GoOQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTUyNw--/https://media.zenfs.com/en/smartasset_475/21759e36688ba0f43fc0796ca627e979" class=" w-100 carrousel__image" alt="...">
@@ -51,7 +51,18 @@
   height: 80vh;
 
 }
+@media (max-width:700px) {
+  .container-carrousel__images{
+  height: 20rem;
+
+}
+
+}
 .carrousel__image{
-  object-fit: contain;
+  object-fit: cover;
+  height: 100%;
+}
+.carousel-item{
+  height: 100%;
 }
 </style>

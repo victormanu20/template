@@ -40,8 +40,15 @@ onMounted(
   width: 100%;
 
 }
+#container__home{
+  overflow-x: hidden;
+
+}
 #MainBody{
-  margin-top: 90px ;
+  margin-top: 90px;
+  padding-bottom: 2rem;
+  overflow-x: hidden;
+
 }
 
 *{
@@ -49,7 +56,6 @@ onMounted(
 }
 html{
   background-color: var(--color-secundary);
-  width: 100%;
 
 }
 a {
