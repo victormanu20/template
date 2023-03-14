@@ -38,6 +38,8 @@ let sideBarState = ref(false)
 
 onMounted(() => {
   store.dispatch('AppInmuebles/getInmuebles');
+  store.dispatch('AppInmuebles/getFilters');
+
 });
 
 const inmueblesList = computed(() => store.state.AppInmuebles.grid);
@@ -81,7 +83,6 @@ function sideOpen(value) {
   max-width: 250px;
   padding: 16px;
   background-color: var(--background-color-filter);
-  position:fixed;
 }
 @media (max-width:1400px) {
   .container__inmuebles {
@@ -110,7 +111,6 @@ function sideOpen(value) {
   display: grid;
   justify-items: center;
   grid-gap: 1rem;
-  margin-left: 260px;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   grid-auto-rows: 34rem;
 }

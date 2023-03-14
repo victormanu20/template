@@ -34,24 +34,7 @@ export default {
 						reduce: (i) => {return i.id}
 					},
 				},
-				habitaciones: {
-					label: 'Habitaciones',
-					value: null,
-					component: 'b-form-input',
-					props: {
-						type: 'number',
-						min: 0
-					}
-				},
-				banos: {
-					label: 'Baños',
-					value: null,
-					component: 'b-form-input',
-					props: {
-						type: 'number',
-						min: 0
-					}
-				},
+
 				pais_id:{
 					label: 'Paises',
 					value: null,
@@ -150,7 +133,6 @@ export default {
 				.then( res => {
 					let {data} = res.data,
 							key = Object.keys(data);
-
 					ctx.commit('SET_LOCATION', {
 						data: data[key[0]],
 						prop

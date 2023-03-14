@@ -1,0 +1,55 @@
+<template>
+  <div>
+    <h6>filtro</h6>
+    <label for="exampleFormControlSelect1">{{ filter }}</label>
+    <div class="container__select">
+      <select class="form-select" v-model="select"> 
+        <option :value="item.tipo" v-for="item in array" :key="item.id">{{ item.tipo }}</option>
+      </select>
+      <button class="btn_close" v-if="select" @click="handleClickEmpty()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"  width="14">
+          <path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
+      </button>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { defineProps,watch,ref,defineEmits } from 'vue';
+
+let select = ref('')
+const emit = defineEmits(['selectItem']);
+
+watch(select,()=>{
+  console.log(select.value)
+  emit('selectItem',select.value)
+})
+defineProps({
+  filter:{
+    type:String
+  },
+  array:{
+    type:Array
+  }
+})
+function handleClickEmpty(){
+  select.value=null
+}
+
+</script>
+<style scoped>
+.container__select{
+  display: flex;
+  background-color: white;
+}
+.btn_close{
+  background-color: white;
+  border: none;
+  border:1px solid #dee2e6;
+  border-left: none;
+}
+.form-select{
+  border-right: none !important;
+  border-radius: 0 !important;
+}
+</style>
