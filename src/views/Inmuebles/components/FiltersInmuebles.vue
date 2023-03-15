@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <h3>FILTROS</h3>
+  <div >
+    <div class="container-filter">
+      <label class="filter__title">Filtar por:</label>
       <div class="form-group">
         <SelectFilter :filter="filtrosSelect.tipo_inmueble.label" :array="filtrosSelect.tipo_inmueble.props.options" @selectItem="(payload)=>formFilters.tipo_inmueble=payload"></SelectFilter>
       </div>
@@ -22,7 +23,7 @@
       <div class="form-group">
         <SelectFilterPosition :filter="filtrosSelect.barrio_id.label" :array="filtrosSelect.barrio_id.props.options"  @selectItem="(payload)=>formFilters.barrio_id=payload"></SelectFilterPosition>
       </div>
-      <button @click="filter()"> filtar</button>
+    </div>
   </div>
 </template>
 
@@ -56,16 +57,6 @@ onMounted(() => {
   watchFilterPosition()
 })
 
-function filter(){
-  console.log(formFilters.pais_id.id)
-  if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position)
-});
-} else {
-  /* geolocation IS NOT available */
-}
-}
 function getUbicacion(id, location,prop){
   store.dispatch('AppInmuebles/getUbicacion', {id, location, prop});
 }
@@ -73,71 +64,61 @@ function getUbicacion(id, location,prop){
 function watchFilterPosition(){
   let props = ['pais_id', 'estado_id', 'ciudad_id', 'zona_id', 'barrio_id'];
   //RECORRER LAS DFTES PROPS DE LOS FILTROS POR UBICACION
+
   for (let i = 0; i < props.length; i++) {
-    watch(()=>formFilters[prop], () =>{
-      console.log(formFilters[prop]);
-      let id= formFilters[prop].id;
-        let location = filtrosSelect.value[prop];
-        let prop = prop+1
+    console.log(i)
+    watch(()=>formFilters[props[i]], () =>{
+      console.log(formFilters[props[i]]);
+      if(formFilters[props[i]]!=null){
+      let id= formFilters[props[i]].id;
+        let location = filtrosSelect.value[props[i]].api;
+        let prop = props[i+1]
         getUbicacion(
           id,
           location,
           prop
         )
+        setFilters()
+      }
     })
   }
 }
-// watch(()=>formFilters.pais_id,()=>{
-//   console.log(formFilters.pais_id)
-//   console.log(filtrosSelect.value['pais_id'])
-//       if(formFilters.pais_id!=null){
-//         let id= formFilters.pais_id.id;
-//         let location = 'states';
-//         let prop = 'estado_id'
-//         getUbicacion(
-//             id,
-//             location,
-//             prop
-//         )
-//       }
-// })
-// watch(()=>formFilters.estado_id,()=>{
-//       if(formFilters.estado_id!=null){
-//         let id= formFilters.estado_id.id;
-//         let location = 'cities';
-//         let prop = 'ciudad_id'
-//         getUbicacion(
-//             id,
-//             location,
-//             prop
-//         )
-//       }
-// })
-// watch(()=>formFilters.ciudad_id,()=>{
-//       if(formFilters.ciudad_id!=null){
-//         let id= formFilters.ciudad_id.id;
-//         let location = 'zonas';
-//         let prop = 'zona_id'
-//         getUbicacion(
-//             id,
-//             location,
-//             prop
-//         )
-//       }
-// })
-// watch(()=>formFilters.zona_id,()=>{
-//       if(formFilters.zona_id!=null){
-//         let id= formFilters.zona_id.id;
-//         let location = 'barrio';
-//         let prop = 'barrio_id'
-//         getUbicacion(
-//             id,
-//             location,
-//             prop
-//         )
 
-//       }
-// })
+function setFilters() {
+  let body = {};
+  for (let prop in filtrosSelect.value) {
+    console.log('prop',prop)
+    if (formFilters[prop]){
+      body[prop] = formFilters[prop].id;
+      console.log('body',body)
+    }
+    else{
+      delete body[prop];
+    }
+  }
+  getInmuebles(Object.keys(body).length == 0 ? null : body);
+}
 
+function getInmuebles(data = null) {
+  store.commit('AppInmuebles/DATA_FILTER', data);
+  store.dispatch('AppInmuebles/getInmuebles')
+    .then(() => {
+      // this.$emit('change', false);
+    });
+}
 
 </script>
+
+<style scoped>
+.container-filter{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--background-color-filter);
+  height: auto;
+  padding: 16px;
+}
+
+.filter__title{
+}
+</style>

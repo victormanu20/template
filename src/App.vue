@@ -52,7 +52,9 @@ onMounted(
 }
 
 *{
-  box-sizing: border-box;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
 }
 html{
   background-color: var(--color-secundary);

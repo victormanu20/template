@@ -64,6 +64,10 @@ const valDataInmueble = (data) =>{
 </script>
 
 <style scoped>
+
+.card{
+  width: 100%;
+}
 .card:hover{
   cursor: pointer;
 }

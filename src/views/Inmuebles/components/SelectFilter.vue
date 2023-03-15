@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h6>filtro</h6>
-    <label for="exampleFormControlSelect1">{{ filter }}</label>
+    <label for="exampleFormControlSelect1" class="filter__label">{{ filter }}</label>
     <div class="container__select">
       <select class="form-select" v-model="select"> 
         <option :value="item.tipo" v-for="item in array" :key="item.id">{{ item.tipo }}</option>
@@ -51,5 +50,8 @@ function handleClickEmpty(){
 .form-select{
   border-right: none !important;
   border-radius: 0 !important;
+}
+.filter__label{
+  font-size: 0.8em;
 }
 </style>
