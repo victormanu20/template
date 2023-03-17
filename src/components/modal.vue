@@ -1,7 +1,7 @@
 <template>
 	<div class="vModal" :class="{ sideBar, sideBarOverlay }"
 		:style="sideBar ? {maxWidth: `${maxWidth[size]}px`, left: 'auto', width: '100%'} : {overflowY: 'auto'}">
-		<div class="sideBarOverlay">h</div>
+		<div class="sideBarOverlay"></div>
 		<div class="vModelOverlay" ref="overlay">
 			<div class="vModalContainer" :style="!sideBar ? { maxWidth: `${maxWidth[size]}px` } : {}">
 				<div class="vModalHeader">
@@ -227,7 +227,6 @@ export default {
 	right: 100%;
 	position: absolute;
 	top: 0;
-	opacity: 0.5;
 	cursor: pointer;
 }
 
@@ -259,5 +258,20 @@ export default {
 .slide-to-left-enter.vModal.sideBar.sideBarOverlay .vModelOverlay::before,
 .slide-to-left-leave-to.vModal.sideBar.sideBarOverlay .vModelOverlay::before {
 	opacity: 0;
+}
+@media (min-width: 980px) {
+	.vModalContainer {
+		width: 100%;
+		right: 0;
+		left: auto;
+		border-radius: 6px;
+		background: #fff;
+		z-index: 2;
+		position: absolute;
+}
+.vModelOverlay{
+	min-height: 0 !important;
+	padding: 0;
+}
 }
 </style>

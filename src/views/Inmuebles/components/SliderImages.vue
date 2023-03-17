@@ -82,7 +82,10 @@ const initSlider = () =>{
 }
 .image-slider{
   max-height: 500px;
+  width: 100%;
 }
+
+
 
 .carousel__slide {
   width: 100%;
@@ -119,6 +122,12 @@ const initSlider = () =>{
   left: 0;
   background-image: linear-gradient(to bottom right, #000, #131313);
   opacity: 0.7;
+}
+
+@media (max-width: 500px) {
+  .image-slider{
+    width: 100%;
+  }
 }
 
 </style>

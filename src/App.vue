@@ -40,14 +40,8 @@ onMounted(
   width: 100%;
 
 }
-#container__home{
-  overflow-x: hidden;
-
-}
 #MainBody{
-  margin-top: 90px;
   padding-bottom: 2rem;
-  overflow-x: hidden;
 
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="container__slider">
-    <div class="col-md-12 col-lg-12">
+    <div class="container__header">
       <div class="title-single-box">
         <h2 class="title-single">{{ inmuebleSeleted.titulo_inmueble }}</h2>
         <div class="container-slider__direction">
@@ -14,8 +14,9 @@
         </div>
 
       </div>
+      <button class="btn btn-primary btn__icon">Ver mas</button>
     </div>
-    <SliderImages :listIMages="inmuebleSeleted.inmueble_imagenes"/>
+    <SliderImages :listIMages="inmuebleSeleted.inmueble_imagenes" class="sliderImages"/>
     <Characteristics :detail="inmuebleSeleted"/>
   </div>
 </template>
@@ -38,10 +39,24 @@ defineProps({
   flex-direction: column;
   gap: 2rem;
 }
+.sliderImages{
+  width: 100%;
+}
+
+.container__header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .title-single-box{
   border-left: 4px solid var(--color-primary);
   padding-left: 1rem;
+}
+.btn__icon{
+  height: 40px;
+  width: auto;
+  padding: 8px 16px;
 }
 
 .container-slider__direction{
@@ -56,6 +71,12 @@ defineProps({
   width: 1.6rem;
   height: 1.6rem;
   fill: var(--color-primary);
+}
+@media (max-width: 780px) {
+  .container__header{
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 </style>

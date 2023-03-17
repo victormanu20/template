@@ -16,25 +16,7 @@
       </div>
     </div>
     <div class="card-footer-a ">
-      <!-- <ul class="card-info d-flex justify-content-around">
-        <li>
-          <h4 class="card-info-title">Area</h4>
-          <span class="card-info_detail">
-            {{props.inmueble.area_lote}} m<sup>2</sup>
-          </span>
-        </li>
-        <li>
-          <h4 class="card-info-title">Beds</h4>
-          <span class="card-info_detail">{{ props.inmueble.habitaciones }}</span>
-        </li>
-        <li>
-          <h4 class="card-info-title">Baths</h4>
-          <span class="card-info_detail">{{ props.inmueble.banos }}</span>
-        </li>
-        <li>
-          <h4 class="card-info-title">Garages</h4>
-        </li>
-      </ul> -->
+
       {{ itemBlog.descripcion }}
     </div>
   </div>
@@ -63,8 +45,9 @@ defineProps({
   width: 100%;
 }
 .card-footer-a {
-  width: 100%;
   position: absolute;
+  width: 100%;
+  height: 80px;
   z-index: 2;
   bottom: 0;
   background-color: #2eca6a;
@@ -131,7 +114,7 @@ defineProps({
   }
 
   .card-box-a:hover .card-overlay-a-content {
-    bottom: 60px;
+    bottom: 80px;
   }
   .card-box-a:hover .card-body-a {
     padding-bottom: 1rem;
@@ -148,7 +131,7 @@ defineProps({
   color: var(--color-secundary);
 }
 .card-box-a:hover .card-overlay-a-content {
-    bottom: 60px;
+    bottom: 80px;
   }
 
 .card-overlay-a-content {
@@ -157,22 +140,9 @@ defineProps({
 
   @media (max-width: 768px) {
   .card-overlay-a-content {
-    bottom: 60px;
+    bottom: 80px;
   }
 }
 
-/* @media (min-width: 768px) and (min-width: 992px) {
-  .card-box-a:hover .card-overlay-a-content {
-    bottom: 64px;
-    background-color: blue;
-  }
-} */
-
-@media (min-width: 992px) {
-  .card-box-a .price-a,
-  .card-box-b .price-a {
-    font-size: 1rem;
-  }
-}
 
 </style>

@@ -41,6 +41,24 @@ console.log(BlogsList.value)
   padding: 0 20rem;
   z-index: 10;
 }
+@media (max-width:1400px) {
+  .container__inmuebles {
+    padding: 0 10rem;
+  }
+}
+
+@media (max-width:900px) {
+  .container__inmuebles {
+    padding: 0 5rem;
+  }
+}
+
+@media (max-width:600px) {
+  .container__inmuebles {
+    padding: 0 2rem;
+  }
+}
+
 
 .title__inmuebles{
   border-bottom: 2px solid var(--color-primary);
@@ -51,7 +69,7 @@ console.log(BlogsList.value)
   display: grid;
   justify-items: center;
   gap:2rem;
-  grid-template-columns: repeat(auto-fit,minmax(15rem,20rem));
+  grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
   grid-auto-rows: 24rem;
 }
 

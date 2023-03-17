@@ -19,20 +19,17 @@
       </button>
     </div>
     <div class="main">
-      <FiltersInmuebles class="sideBar"></FiltersInmuebles>
+      <FiltersInmuebles class="sideBar" :class="[(filterModalState)?'active':'']" :filterModalState="filterModalState" @closeFilter="() =>filterModalState=false"></FiltersInmuebles>
       <div class="inmuebles__grid" v-if="inmueblesList.data">
             <CardInmuebleList v-for="inmueble in inmueblesList.data" :key="inmueble.id" :inmueble="inmueble"
               @showDetail="showDetail" />
       </div>
     </div>
-    <Pagination class="mx-n3" :LastPages="inmueblesList.last_page"  />
+    <Pagination :LastPages="inmueblesList.last_page"  />
   </div>
-  <VModal v-if="sideBarState" @close="sideClose" titulo="Detalle del inmueble" sideBar size="md">
-    <DetailInmueble  :inmuebleSeleted="inmuebleSeleted" />
-  </VModal>
-  <VModal v-if="filterModalState" @close="sideClose" titulo="Detalle del inmueble" sideBar size="md">
-    <FiltersInmuebles ></FiltersInmuebles>
-  </VModal>
+  <v-modal v-if="sideBarState" @close="sideClose" ref="modalInmueble" titulo="Detalle del inmueble"   size="md">
+    <component :is="DetailInmueble" :inmuebleSeleted="inmuebleSeleted" />
+  </v-modal>
 </template>
 
 <script setup>
@@ -43,7 +40,7 @@ import VModal from "@/components/modal.vue";
 import DetailInmueble from './components/DetailInmueble.vue';
 import Pagination from '@/components/PaginationMain.vue'
 import FiltersInmuebles from './components/FiltersInmuebles.vue';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref,defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore()
@@ -52,11 +49,15 @@ let sideBarState = ref(false)
 let filterModalState=ref(false)
 
 
-
+defineComponent()
 onMounted(() => {
   store.dispatch('AppInmuebles/getInmuebles');
   store.dispatch('AppInmuebles/getFilters');
-
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(mostrarPosicion, errorPosicion);
+    } else {
+      alert("Tu navegador no soporta la API de geolocalización.");
+    }
 });
 
 const inmueblesList = computed(() => store.state.AppInmuebles.grid);
@@ -75,6 +76,17 @@ function sideOpen(value) {
 function showFilter(){
   filterModalState.value=true
 }
+
+function mostrarPosicion(posicion) {
+      var ubicacion = document.getElementById("ubicacion");
+      ubicacion.innerHTML = "Latitud: " + posicion.coords.latitude + "<br>Longitud: " + posicion.coords.longitude;
+    }
+
+    function errorPosicion(error) {
+      alert("Error al obtener la ubicación: " + error.message);
+    }
+
+
 </script>
 <style>
 :root{
@@ -87,10 +99,8 @@ function showFilter(){
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-top: 3rem;
-  padding: 0 8rem;
+  padding: 3 8rem;
   margin-bottom: 3rem;
-  z-index: 10;
 }
 .main{
   display: flex;
@@ -129,9 +139,27 @@ function showFilter(){
 @media (max-width:980px) {
   .sideBar{
     display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    z-index: 10;
+    overflow: auto;
+  }
+  .sideBar.active{
+    display: flex;
   }
   .btn-filter{
   display: flex;
+}
+}
+
+@media (max-width: 600px) {
+  .container-inmuebles{
+    position: relative;
+  }
+  .container-inmuebles{
+  padding: 0 1rem;
 }
 }
 </style>

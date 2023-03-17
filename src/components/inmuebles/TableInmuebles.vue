@@ -14,6 +14,7 @@
         v-if="sideBarState"
         @close="sideClose"
         titulo="Detalle del inmueble"
+        ref="modalInmueble"
         sideBar
         size="md"
       >
