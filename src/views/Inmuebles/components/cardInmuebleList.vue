@@ -1,7 +1,7 @@
 <template>
-  <div class="card"  @click="handleShowDetail(props.inmueble)" v-if="props.inmueble">
-    <img :src="props.inmueble.inmueble_imagenes[0].url" class="card-img-top" :alt="props.inmueble.titulo_inmueble">
-    <div class="card-body">
+  <div class="card"   v-if="props.inmueble">
+    <img @click="handleShowDetail(props.inmueble)" :src="props.inmueble.inmueble_imagenes[0].url" class="card-img-top" :alt="props.inmueble.titulo_inmueble">
+    <div class="card-body" >
       <h6 class="title__inmueble">{{ props.inmueble.titulo_inmueble }}</h6>
       <h6 class="card-title price__inmueble" v-if="props.inmueble.selling_price">Venta: {{ props.inmueble.selling_price }}</h6>
       <h6 class="card-title price__inmueble"  v-if="props.inmueble.rental_price">Alquiler: {{ props.inmueble.rental_price }}</h6>
@@ -35,7 +35,7 @@
         </div>
         <div class="item__data">
           <span style="display: block;">Estrato</span>
-          <span >2</span>
+          <span>2</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="logo__item">
             <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z"/>
           </svg>
@@ -44,6 +44,12 @@
       <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       <a href="#" class="btn btn-primary">Go somewhere</a> -->
     </div>
+    <button class="card-footer__btn">          
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/>
+      </svg>
+      Contactar
+    </button>
   </div>
 </template>
 <script  setup>
@@ -63,7 +69,7 @@ const valDataInmueble = (data) =>{
 } 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .card{
   width: 100%;
@@ -107,6 +113,35 @@ const valDataInmueble = (data) =>{
   padding: 0.3em;
   font-size: 0.8em;
 }
+
+.card-footer__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height:60px ;
+  padding: 4px 6px;
+  gap: 4px;
+  border: none;
+  color: var(--color-primary);
+  svg{
+    width: 2rem;
+    height: 2rem;
+    fill: var(--color-primary);
+  }
+}
+
+.card-footer__btn:hover{
+  background-color: var(--color-primary);
+  color: white;
+  
+  svg{
+    width: 2rem;
+    height: 2rem;
+    fill: white;
+  }
+}
+
 
 
 

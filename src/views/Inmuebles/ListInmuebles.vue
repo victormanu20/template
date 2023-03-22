@@ -133,7 +133,7 @@ function mostrarPosicion(posicion) {
   justify-items: center;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-  grid-auto-rows: 34rem;
+  grid-auto-rows: 35rem;
 }
 
 @media (max-width:980px) {
