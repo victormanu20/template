@@ -30,8 +30,7 @@
 
 <script>
 export default {
-
-	name: 'vModal',
+	name: 'modalSlide',
 	props: {
 		titulo: {
 			type: String,

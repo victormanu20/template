@@ -1,6 +1,9 @@
 <template>
   <div class="container__inmuebles">
-    <h3 class="title__inmuebles">INMUEBLES</h3>
+    <div class="container__title">
+      <h3 class="title__inmuebles">INMUEBLES</h3>
+      <button type="button" class="btn btn-primary" @click="ShowInmuebles()" >Ver mas...</button>
+    </div>
     <div class="inmuebles__grid"  v-if="inmueblesList">
         <CardInmueble  
         v-for="inmueble in inmueblesList" 
@@ -14,19 +17,22 @@
 <script setup>
 import { onMounted,computed} from 'vue';
 import { useStore } from 'vuex';
-  import CardInmueble from '@/components/inmuebles/CardInmueble.vue';
+import CardInmueble from '@/components/inmuebles/CardInmueble.vue';
+import { useRouter } from 'vue-router';
 
-  // import DetInmueble from './components/DetInmuebles/DetInmueble.vue'
-
-const store = useStore()
-const inmueblesList = computed( () => store.state.AppInmuebles.list)
+const store = useStore();
+const router = useRouter();
+const inmueblesList = computed( () => store.state.AppInmuebles.list);
 onMounted(
   ()  => {
     store.dispatch('AppInmuebles/getListInmuebles');
   }
 )
-
-
+function ShowInmuebles(){
+  router.push({
+        name: 'inmuebles',
+})
+}
 </script>
 
 <style scoped>
@@ -56,8 +62,9 @@ onMounted(
   }
 }
 
-
-.title__inmuebles{
+.container__title{
+  display: flex;
+  justify-content: space-between;
   border-bottom: 2px solid var(--color-primary);
   padding-bottom: 1rem;
   font-size: bold;

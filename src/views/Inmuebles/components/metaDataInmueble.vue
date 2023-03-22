@@ -26,7 +26,6 @@
 			</div>
 
       <h2 class="tituloDetalleInmueble">Descripción Inmueble</h2>
-
       <div class="row detalleInmueble">
 						<div class="col">
 							<div class="wrapperDetalleInmueble descripcionGeneral">
@@ -90,17 +89,6 @@
 							</div>
 						</div>
 					</div>
-          
-		</div>
-
-		<div class="agenteInmueble d-flex flex-column align-items-center">
-			<figure v-if="detail.user_id.userdata.foto_persona" class="fotoAgenteInmueble">
-				<img class="img-fluid mx-auto d-block" :src="detail.user_id.userdata.foto_persona" alt="">
-			</figure>
-			<div class="nombreAgenteInmueble">
-				{{detail.user_id.userdata.primer_nombre}}
-				<span class="cargo">Agente inmobiliario</span>
-			</div>
 		</div>
     </div>
 
@@ -120,7 +108,7 @@ defineProps({
 
 
 .metaInmueble{
-  width: 50%;
+  width: 100%;
 }
 .agenteInmueble{
   width: 50%;
@@ -177,29 +165,6 @@ defineProps({
 	.sideBarInmueble .metaDataInmueble .anoConstrucion{
 		margin: 20px -35px;
 	}
-	.fotoAgenteInmueble {
-		max-width: 180px;
-		width: 100%;
-		margin-bottom: 10px;
-	}
-
-	.nombreAgenteInmueble {
-		text-transform: capitalize;
-		font-size: 24px;
-		font-weight: 400;
-		text-align: center;
-		line-height: 1.4;
-	}
-
-	.nombreAgenteInmueble .cargo {
-		display: block;
-		line-height: 1;
-		font-size: 0.65em;
-		text-transform: uppercase;
-		font-weight: 700;
-		color: var(--tm-cop);
-	}
-
 	.metaDataInmueble+* {
 		border-top: 1px solid #e4e4e4;
 		margin-top: 1rem;

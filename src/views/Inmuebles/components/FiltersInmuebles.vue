@@ -9,6 +9,10 @@
           </svg>
         </span>
       </div>
+      <div class="form-group" v-for="filter in filtrosSelect" :key="filter.label">
+        <SelectFilterPosition :label="filter.label" :optionProps="filter.props" @selectItem="(payload)=>formFilters.tipo_inmueble=payload"></SelectFilterPosition>
+      </div>
+
       <div class="form-group">
         <SelectFilter :filter="filtrosSelect.tipo_inmueble.label" :array="filtrosSelect.tipo_inmueble.props.options" @selectItem="(payload)=>formFilters.tipo_inmueble=payload"></SelectFilter>
       </div>

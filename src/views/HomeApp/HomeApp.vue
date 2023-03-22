@@ -1,10 +1,10 @@
 
 <template>
   <div  class="container__home">
-    <CarrouselAppHome/>
-    <InmueblesHome/>
-    <BlogsHome/>
-  </div>
+      <CarrouselAppHome/>
+      <InmueblesHome/>
+      <BlogsHome/>
+    </div>
 </template> 
 
 
@@ -16,10 +16,10 @@
 
 </script>
 
-<style>
+<style scoped>
 .container__home{
   display: flex;
   flex-direction: column;
+  gap: 3rem;
 }
-
 </style>

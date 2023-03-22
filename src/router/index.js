@@ -1,5 +1,6 @@
-import HomeApp from '@/views/HomeApp/HomeApp'
-import ListInmuebles from '@/views/Inmuebles/ListInmuebles'
+import HomeApp from '@/views/HomeApp/HomeApp.vue';
+import ListInmuebles from '@/views/Inmuebles/ListInmuebles.vue';
+import InmueblesSelected from '@/views/InmueblesSelectedView.vue';
 // import Blogs from '@/pages/Blogs/Blogs'
 // import Blogs from '@/pages/Blogs/Blogs'
 // import InmuebleDetail from '@/components/view/inmueble/InmuebleDetail'
@@ -8,27 +9,19 @@ const routes = [
     {
       path: '/',
       name: 'inicio',
-      text: 'Inicio',
       component: HomeApp
     },
     {
       path: '/inmuebles',
-      text: 'Inmuebles',
       name: 'inmuebles',
       component: ListInmuebles,
-      // children:[
-      //   // {
-      //   //   path: 'catalogo/',
-      //   //   name: 'catalogo-inmuebles',
-      //   //   component: InmueblesStore
-      //   // },
-      //   // {
-      //   //   path: 'detalle/:slug',
-      //   //   name: 'inmuebles-detalle',
-      //   //   component: InmuebleDetail
-      //   // }
-      // ]
+
     },
+    {
+      path: '/detalle/:slug',
+      name: 'inmuebles-detalle',
+      component: InmueblesSelected
+    }
     // {
     //   path: '/blog/',
     //   name: 'blog',

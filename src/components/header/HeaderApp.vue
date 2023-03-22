@@ -28,7 +28,7 @@
         <router-link to="/" class="nav-link active"  aria-current="page" @click="showMenuMobile()">Inicio</router-link>
     </li>
     <li >
-        <router-link to="/inmuebles" class="nav-link active"  aria-current="page" @click="showMenuMobile()">Immuebles</router-link>
+        <router-link :to="{name:'inmuebles'}" class="nav-link active"  aria-current="page" @click="showMenuMobile()">Immuebles</router-link>
     </li>
     <li >
         <router-link to="/" class="nav-link active"  aria-current="page">Blogs</router-link>

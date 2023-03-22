@@ -14,22 +14,41 @@
         </div>
 
       </div>
-      <button class="btn btn-primary btn__icon">Ver mas</button>
+      <button class="btn btn-primary btn__icon" @click="detailInmueble(inmuebleSeleted.slug)">Ver mas</button>
     </div>
     <SliderImages :listIMages="inmuebleSeleted.inmueble_imagenes" class="sliderImages"/>
     <Characteristics :detail="inmuebleSeleted"/>
   </div>
 </template>
 <script setup>
-import { defineProps } from 'vue';
-import SliderImages from './SliderImages.vue'
-import Characteristics from './characteristicsInmueble.vue'
-
-defineProps({
+import { defineProps,defineEmits,onMounted } from 'vue';
+import SliderImages from './SliderImages.vue';
+import Characteristics from './characteristicsInmueble.vue';
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
+const router = useRouter()
+const store = useStore()
+const emit = defineEmits(['closeModal'])
+const props=defineProps({
   inmuebleSeleted:{
     type:Object
   }
  })
+
+ onMounted(()=>{
+  store.commit('AppInmuebles/SET_DETAIL',props.inmuebleSeleted)
+ })
+
+function detailInmueble(slug){
+  emit('closeModal')
+  router.push({
+        name: 'inmuebles-detalle',
+        params:{
+          slug
+        }
+})
+}
+
 </script>
 
 <style>
