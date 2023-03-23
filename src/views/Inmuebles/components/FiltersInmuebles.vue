@@ -9,10 +9,13 @@
           </svg>
         </span>
       </div>
-      <div class="form-group" v-for="filter in filtrosSelect" :key="filter.label">
-        <SelectFilterPosition :label="filter.label" :optionProps="filter.props" @selectItem="(payload)=>formFilters.tipo_inmueble=payload"></SelectFilterPosition>
+      <div class="form-group" >
+        <FilterCheck></FilterCheck>
       </div>
-
+      <div class="form-group" v-for="filter in filtrosSelect" :key="filter.label">
+        <SelectFilterPosition :label="filter.label" :optionProps="filter.props" @selectItem="(payload)=>formFilters[filter.id] = payload"></SelectFilterPosition>
+      </div>
+<!-- 
       <div class="form-group">
         <SelectFilter :filter="filtrosSelect.tipo_inmueble.label" :array="filtrosSelect.tipo_inmueble.props.options" @selectItem="(payload)=>formFilters.tipo_inmueble=payload"></SelectFilter>
       </div>
@@ -33,7 +36,7 @@
       </div>
       <div class="form-group">
         <SelectFilterPosition :filter="filtrosSelect.barrio_id.label" :array="filtrosSelect.barrio_id.props.options"  @selectItem="(payload)=>formFilters.barrio_id=payload"></SelectFilterPosition>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -41,7 +44,8 @@
 <script setup >
 import { onMounted,ref,computed,watch,reactive,defineProps,defineEmits } from 'vue';
 import { useStore } from 'vuex';
-import SelectFilter from './SelectFilter.vue'
+import FilterCheck from './filterCheck.vue';
+// import SelectFilter from './SelectFilter.vue'
 import SelectFilterPosition from './SelectFilterPosition.vue';
 const store = useStore();
 let select = ref();
@@ -75,6 +79,8 @@ onMounted(() => {
   console.log('filtros',filtrosSelect.value);
   console.log('state',props.filterModalState)
   watchFilterPosition()
+  watchFilterType()
+
 })
 
 function closeFilter(){
@@ -88,9 +94,7 @@ function getUbicacion(id, location,prop){
 function watchFilterPosition(){
   let props = ['pais_id', 'estado_id', 'ciudad_id', 'zona_id', 'barrio_id'];
   //RECORRER LAS DFTES PROPS DE LOS FILTROS POR UBICACION
-
   for (let i = 0; i < props.length; i++) {
-    console.log(i)
     watch(()=>formFilters[props[i]], () =>{
       console.log(formFilters[props[i]]);
       if(formFilters[props[i]]!=null){
@@ -103,9 +107,25 @@ function watchFilterPosition(){
           prop
         )
         setFilters()
+      }else{
+        formFilters[props[i]]=null
+        // store.commit('AppInmuebles/CLEAN_FILTER_POSITION',props[i])
+        setFilters()
       }
     })
   }
+
+}
+function watchFilterType(){
+  let props = ['tipo_inmueble','tipo_negocio'];
+  //RECORRER LAS DFTES PROPS DE LOS FILTROS POR UBICACION
+  for (let i = 0; i < props.length; i++) {
+    console.log(i)
+    watch(()=>formFilters[props[i]], () =>{
+      setFilters()
+    })
+  }
+
 }
 
 function setFilters() {

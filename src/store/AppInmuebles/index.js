@@ -15,9 +15,9 @@ export default {
 			data: null,
 			filtro: {
 				tipo_inmueble:{
+					id:'tipo_inmueble',
 					label: 'Tipo de Propiedad',
 					value: null,
-					component: 'vSelect',
 					props: {
 						options: [],
 						label: 'tipo',
@@ -25,9 +25,9 @@ export default {
 					},
 				},
 				tipo_negocio:{
+					id:'tipo_negocio',
 					label: 'Tipo de Negocio',
 					value: null,
-					component: 'vSelect',
 					props: {
 						options: [],
 						label: 'tipo',
@@ -36,10 +36,10 @@ export default {
 				},
 
 				pais_id:{
+					id:'pais_id',
 					label: 'Paises',
 					value: null,
 					api: 'states',
-					component: 'vSelect',
 					props: {
 						options: [],
 						label: 'name',
@@ -47,10 +47,10 @@ export default {
 					},
 				},
 				estado_id:{
+					id:'estado_id',
 					label: 'Departamentos',
 					value: null,
 					api: 'cities',
-					component: 'vSelect',
 					props: {
 						options: [],
 						label: 'name',
@@ -58,6 +58,7 @@ export default {
 					},
 				},
 				ciudad_id:{
+					id:'ciudad_id',
 					label: 'Ciudades',
 					value: null,
 					api: 'zonas',
@@ -69,6 +70,7 @@ export default {
 					},
 				},
 				zona_id:{
+					id:'zona_id',
 					label: 'Zonas',
 					value: null,
 					api: 'barrio',
@@ -80,9 +82,9 @@ export default {
 					},
 				},
 				barrio_id:{
+					id:'barrio_id',
 					label: 'Barrios',
 					value: null,
-					component: 'vSelect',
 					props: {
 						options: [],
 						label: 'name',
@@ -95,6 +97,10 @@ export default {
 	},
 	mutations: {
 		/* Start Inmuebles */
+		CLEAN_FILTER_POSITION: (state, value) => {
+			console.log('value',value)
+			state.filtros.filtro[value].props.options  = [];
+		},
 		SET_DETAIL: (state, value) => {
 			state.detail = value;
 		},
