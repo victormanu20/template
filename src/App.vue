@@ -4,6 +4,7 @@
     <main id="MainBody">
       <router-view></router-view>
     </main>
+    <FooterApp/>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import { onMounted,ref } from 'vue';
 import { useStore } from 'vuex';
 // COMPONENTS
 import HeaderApp from '@/components/header/HeaderApp.vue';
+import FooterApp from '@/components/footer/FooterApp.vue';
 
 const store = useStore()
 
@@ -44,7 +46,6 @@ onMounted(
   padding-bottom: 2rem;
 
 }
-
 *{
   box-sizing: content-box;
   margin: 0;
@@ -60,4 +61,6 @@ a {
 li{
   list-style: none;
 }
+
+
 </style>

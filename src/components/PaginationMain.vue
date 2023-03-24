@@ -90,7 +90,7 @@ function getData(params, {overlay, dispatch}){
 
 </script>
 
-<style>
+<style scoped>
 .page-item{
 	cursor: pointer;
 }

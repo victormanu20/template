@@ -1,6 +1,9 @@
 <template>
   <div class="container__inmuebles">
-    <h3 class="title__inmuebles">BLOGS</h3>
+    <div  class="container__title">
+      <h3 class="title__inmuebles">BLOGS</h3>
+      <button class="btn__show" @click="ShowInmuebles()" >Ver más...</button>
+    </div>
     <div class="inmuebles__grid"  v-if="BlogsList">
       <cardBlog  
         v-for="blog in BlogsList" 
@@ -33,6 +36,13 @@ console.log(BlogsList.value)
 </script>
 
 <style scoped>
+.btn__show{
+  padding: 4px 8px;
+  background-color: var(--color-primary);
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
 
 .container__inmuebles{
   display: flex;
@@ -59,11 +69,15 @@ console.log(BlogsList.value)
   }
 }
 
-
-.title__inmuebles{
+.container__title{
+  display: flex;
+  justify-content: space-between;
   border-bottom: 2px solid var(--color-primary);
   padding-bottom: 1rem;
   font-size: bold;
+}
+
+.title__inmuebles{
 }
 .inmuebles__grid{
   display: grid;

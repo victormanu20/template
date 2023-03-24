@@ -38,10 +38,11 @@ import ContactAgente from '@/views/Inmuebles/components/contactAgente.vue';
   <style scoped>
   .container__slider{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     gap: 2rem;
-    padding: 2rem 20rem;
+    padding: 2rem 1rem;
+    align-items: center;
   }
   .container__slider-left{
     display: flex;
@@ -89,4 +90,19 @@ import ContactAgente from '@/views/Inmuebles/components/contactAgente.vue';
     }
   }
 
+  @media (min-width: 1000px) {
+    .container__slider{
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+  }
+  .container__slider-left{
+    max-width: 60%;
+  }
+  }
+  @media (min-width: 1023px) {
+  .container__slider-left{
+    max-width: 700px;
+  }
+  }
   </style>

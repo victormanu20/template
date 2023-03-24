@@ -53,7 +53,7 @@ const initSlider = () =>{
 
 </script>
 
-<style >
+<style  scoped>
 #mainCarousel {
   --carousel-button-bg: var(--color-primary);
 

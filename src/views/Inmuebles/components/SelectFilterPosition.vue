@@ -2,7 +2,6 @@
   <div>
     <label for="exampleFormControlSelect1" class="select-filter__label">{{ label }}</label>
     <div class="container__select" >
-      
       <select class="form-select" v-model="select" v-if="optionProps"> 
         <option  :value="item" v-for="(item,index) in optionProps.options" :key="index">{{ item[optionProps.label] }}</option>
       </select>

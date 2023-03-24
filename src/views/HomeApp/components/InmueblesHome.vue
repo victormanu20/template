@@ -2,7 +2,7 @@
   <div class="container__inmuebles">
     <div class="container__title">
       <h3 class="title__inmuebles">INMUEBLES</h3>
-      <button type="button" class="btn btn-primary" @click="ShowInmuebles()" >Ver mas...</button>
+      <button class="btn__show" @click="ShowInmuebles()" >Ver más...</button>
     </div>
     <div class="inmuebles__grid"  v-if="inmueblesList">
         <CardInmueble  
@@ -36,7 +36,13 @@ function ShowInmuebles(){
 </script>
 
 <style scoped>
-
+.btn__show{
+  padding: 4px 8px;
+  background-color: var(--color-primary);
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
 .container__inmuebles{
   display: flex;
   flex-direction: column;

@@ -3,7 +3,7 @@
     <div class="container-inmuebles__header">
       <h3 class="title__inmuebles">INMUEBLES</h3>
       <button class="btn-filter" @click="showFilter()">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments-horizontal icon-svg__filter" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments-horizontal" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2eca6a" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <circle cx="14" cy="6" r="2" />
           <line x1="4" y1="6" x2="12" y2="6" />
@@ -105,13 +105,13 @@ function showContactForm(payload){
 }
 </style>
 
-<style scoped>
+<style scoped lang="scss">
 .container-inmuebles{
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 20px 100px;
-  margin-bottom: 3rem;
+  margin:3rem 0;
 }
 .main{
   display: flex;
@@ -127,8 +127,9 @@ function showContactForm(payload){
 .container-inmuebles__header{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 2px solid var(--color-primary);
-  padding-bottom: 1rem;
+  padding-bottom: 10px;
 }
 .btn-filter{
   display: none;
@@ -162,6 +163,14 @@ function showContactForm(payload){
   }
   .btn-filter{
   display: flex;
+  align-items: center;
+  border: 2px solid var(--color-primary);
+  padding: 4px;
+  background-color: white;
+  z-index: 10;
+  color: var(--color-primary);
+  border-radius: 10px;
+
 }
 }
 

@@ -38,7 +38,7 @@ defineProps({
 
 </script>
 
-<style>
+<style scoped>
 .card-box-ico {
   padding: 1rem 3rem 1rem 2.5rem;
   border: 5px solid #2eca6a;

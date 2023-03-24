@@ -51,7 +51,7 @@ function detailInmueble(slug){
 
 </script>
 
-<style>
+<style scoped>
 .container__slider{
   display: flex;
   width: 100%;

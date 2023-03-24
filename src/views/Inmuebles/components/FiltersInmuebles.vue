@@ -9,11 +9,11 @@
           </svg>
         </span>
       </div>
-      <div class="form-group" >
-        <FilterCheck></FilterCheck>
+      <div class="form-group"  v-for="item in filterCheck" :key="item.label" >
+        <FilterCheck :props="item" @handleCheckItem="(payload)=>formFilters[item.id] = payload"></FilterCheck>
       </div>
       <div class="form-group" v-for="filter in filtrosSelect" :key="filter.label">
-        <SelectFilterPosition :label="filter.label" :optionProps="filter.props" @selectItem="(payload)=>formFilters[filter.id] = payload"></SelectFilterPosition>
+        <SelectFilterPosition :label="filter.label" :optionProps="filter.props" @selectItem="(payload)=>formFilters[filter.id] = payload.id"></SelectFilterPosition>
       </div>
 <!-- 
       <div class="form-group">
@@ -51,6 +51,16 @@ const store = useStore();
 let select = ref();
 const emit = defineEmits(['closeFilter']);
 
+let filterCheck= reactive([
+  {
+    id:'habitaciones',
+    label:'habitaciones'
+  },
+  {
+    id:'banos',
+    label:'baños'
+  }
+])
 
 const props=defineProps({
   filterModalState:{
@@ -65,7 +75,9 @@ const formFilters= reactive({
   estado_id:'',
   ciudad_id:'',
   zona_id:'',
-  barrio_id:''
+  barrio_id:'',
+  habitaciones:null,
+  banos:null
 })
 // let pais_id=ref();
 // let estado_id=ref();
@@ -78,6 +90,7 @@ onMounted(() => {
   console.log(select.value)
   console.log('filtros',filtrosSelect.value);
   console.log('state',props.filterModalState)
+  watchFilterCheck()
   watchFilterPosition()
   watchFilterType()
 
@@ -114,7 +127,6 @@ function watchFilterPosition(){
       }
     })
   }
-
 }
 function watchFilterType(){
   let props = ['tipo_inmueble','tipo_negocio'];
@@ -125,15 +137,24 @@ function watchFilterType(){
       setFilters()
     })
   }
-
+}
+function watchFilterCheck(){
+  //RECORRER LAS DFTES PROPS DE LOS FILTROS POR UBICACION
+  for (let item of filterCheck) {
+    console.log(item.id)
+    watch(()=>formFilters[item.id], () =>{
+      setFilters()
+      console.log(item.id)
+    })
+  }
 }
 
 function setFilters() {
   let body = {};
-  for (let prop in filtrosSelect.value) {
+  for (let prop in formFilters) {
     console.log('prop',prop)
     if (formFilters[prop]){
-      body[prop] = formFilters[prop].id;
+      body[prop] = formFilters[prop];
       console.log('body',body)
     }
     else{
@@ -161,6 +182,11 @@ function getInmuebles(data = null) {
   background-color: var(--background-color-filter);
   height: auto;
   padding: 16px;
+}
+.filter__title{
+  font-size: 1rem;
+  color: var(--color-primary);
+  font-weight: bold;
 }
 
 .container-filter__header{

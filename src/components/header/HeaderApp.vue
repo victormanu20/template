@@ -25,14 +25,14 @@
   </div>
   <ul class="navbar-menu" :class="(stateMenuMobile)?'active':''">
     <li >
-        <router-link to="/" class="nav-link active"  aria-current="page" @click="showMenuMobile()">Inicio</router-link>
+        <router-link to="/" class="nav-link"  aria-current="page" @click="showMenuMobile()">INICIO</router-link>
     </li>
     <li >
-        <router-link :to="{name:'inmuebles'}" class="nav-link active"  aria-current="page" @click="showMenuMobile()">Immuebles</router-link>
+        <router-link :to="{name:'inmuebles'}" class="nav-link"  aria-current="page" @click="showMenuMobile()">INMUEBLES</router-link>
     </li>
-    <li >
-        <router-link to="/" class="nav-link active"  aria-current="page">Blogs</router-link>
-    </li>
+    <!-- <li >
+        <router-link to="/" class="nav-link"  aria-current="page">BLOGS</router-link>
+    </li> -->
   </ul>
   <div class="navbar-toggle" @click="showMenuMobile()">
     <span></span>
@@ -56,21 +56,37 @@ let configuration = computed(() => store.state.AppData.data.configuracion);
 function showMenuMobile(){
   stateMenuMobile.value= !stateMenuMobile.value;
 }
-
-
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+li{
+  box-sizing: content-box;
+}
 .nav__logo{
   max-width: 60px;
+
+}
+.navbar-logo{
+  a{
+    border: none ;
+  }
+}
+.nav-link{
+  padding: 4px 6px;
+}
+.router-link-exact-active{
+  border: 2px solid var(--color-primary);
+  border-radius: 5px;
 }
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
+  gap: 40px;
   align-items: center;
   background-color: #fff;
   color: #333;
-  padding: 10px 30px;
+  padding: 10px 80px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -84,13 +100,17 @@ function showMenuMobile(){
 
 .navbar-menu {
   display: flex;
+  gap: 1rem;
   list-style: none;
   margin: 0;
   padding: 0;
+  li{
+    color: var(--color-primary);
+    font-weight: bold;
+  }
 }
 
 .navbar-menu li {
-  margin-right: 20px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -99,13 +119,12 @@ function showMenuMobile(){
 }
 
 .navbar-menu li a {
-  color: #333;
+  color: var(--color-primary);
   text-decoration: none;
   font-size: 16px;
   transition: all 0.3s ease-in-out;
   position: relative;
 }
-
 .navbar-menu li a::before {
   content: "";
   position: absolute;
@@ -113,7 +132,7 @@ function showMenuMobile(){
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #333;
+  background-color: var(--color-primary);
   visibility: hidden;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
