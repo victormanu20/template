@@ -53,32 +53,38 @@ const initSlider = () =>{
 
 </script>
 
-<style  scoped>
+<style lang="scss">
+  .carousel__button{
+    svg{
+      fill: var(--color-secundary);
+    }
+  }
+</style>
+<style scoped>
 #mainCarousel {
   --carousel-button-bg: var(--color-primary);
 
-  --carousel-button-width: 48px;
-  --carousel-button-height: 48px;
+  --carousel-button-width: 35px;
+  --carousel-button-height: 35px;
 
   --carousel-button-svg-width: 27px;
   --carousel-button-svg-height: 27px;
-  --carousel-button-svg-stroke-width: 1.5;
+  --carousel-button-svg-stroke-width: 0;
 
   --carousel-button-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px
       0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px
       4px -1px;
 }
-
 .slider__images{
   max-width: 700px;
   margin: 0 auto;
 }
 .carousel__button.is-prev {
-  left: -20px;
+  left: -5px;
 }
 
 .carousel__button.is-next {
-  right: -20px;
+  right: -5px;
 }
 .image-slider{
   max-height: 500px;

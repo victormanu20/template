@@ -14,7 +14,7 @@
         </div>
 
       </div>
-      <button class="btn btn-primary btn__icon" @click="detailInmueble(inmuebleSeleted.slug)">Ver mas</button>
+      <button class="btn__show" @click="detailInmueble(inmuebleSeleted.slug)">Ver Detalles</button>
     </div>
     <SliderImages :listIMages="inmuebleSeleted.inmueble_imagenes" class="sliderImages"/>
     <Characteristics :detail="inmuebleSeleted"/>
@@ -52,6 +52,13 @@ function detailInmueble(slug){
 </script>
 
 <style scoped>
+.btn__show{
+  padding: 8px 14px;
+  background-color: var(--color-primary);
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
 .container__slider{
   display: flex;
   width: 100%;
@@ -72,11 +79,7 @@ function detailInmueble(slug){
   border-left: 4px solid var(--color-primary);
   padding-left: 1rem;
 }
-.btn__icon{
-  height: 40px;
-  width: auto;
-  padding: 8px 16px;
-}
+
 
 .container-slider__direction{
   display: flex;

@@ -8,7 +8,7 @@
         <span class="ion-money">$</span>
       </div>
       <div class=" align-self-center">
-        <h5 class="title-c">15000</h5>
+        <h5 class="title-c">{{ currencyFormat(detailPrice.selling_price) }}</h5>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
         <span class="ion-money">$</span>
       </div>
       <div class=" align-self-center">
-        <h5 class="title-c">15000</h5>
+        <h5 class="title-c">{{ currencyFormat(detailPrice.rental_price) }}</h5>
       </div>
     </div>
   </div>
@@ -35,6 +35,14 @@ defineProps({
     type: Object,
   }
 })
+
+function currencyFormat(value) {
+	return new Intl.NumberFormat("de-DE", {
+		style: "currency",
+		currency: "COP",
+		minimumFractionDigits: 0,
+	}).format(value);
+}
 
 </script>
 

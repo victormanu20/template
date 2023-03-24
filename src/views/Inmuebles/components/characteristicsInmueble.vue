@@ -8,8 +8,7 @@
     </div>
     <metaDataInmuble :detail="detail"/>
     <div class="wrapperDetalleInmueble attrGeneral mt-5 cols-lg-12">
-      <div class="container">
-        <div class="row">
+      <div class="row"  v-if="detail.caracteristicas_internas.length >0">
           <div class="col">
             <h2 class="tituloDetalleInmueble">Caracteristicas internas</h2>
             <ul class="attrList">
@@ -20,10 +19,9 @@
               </li>
             </ul>
           </div>
-        </div>
       </div>
       
-      <div class="row mt-4">
+      <div class="row mt-4"  v-if="detail.caracteristicas_externas.length>0">
         <div class="col">
           <h2 class="tituloDetalleInmueble">Caracteristicas Externas</h2>
           <ul class="attrList">
@@ -38,7 +36,7 @@
     </div>
     <div class="wrapperDetalleInmueble googleMaps mt-5">
       <h2 class="tituloDetalleInmueble">Ubicación</h2>
-      <Map v-if="detail" class="flex-grow-1" v-bind="map" />
+      <GoogleMap v-if="detail" class="flex-grow-1" v-bind="map" />
     </div>
 
 
@@ -46,10 +44,25 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps,computed } from 'vue';
 import detailPrice from './detailPrice.vue';
-import metaDataInmuble from './metaDataInmueble.vue'
+import metaDataInmuble from './metaDataInmueble.vue';
+import GoogleMap from '@/components/inmuebles/GoogleMap.vue';
 
+let map = computed(
+  ()=>{
+    const { titulo_inmueble, direccion, ciudad_id, estado_id, latitud, longitud, } = this.detail;
+    return {
+        nombre: titulo_inmueble,
+        direccion,
+        ciudad: ciudad_id.name,
+        estado: estado_id.name,
+        lat: latitud,
+        lng: longitud,
+    }
+
+  }
+)
 
 defineProps({
   detail:{
@@ -82,24 +95,23 @@ defineProps({
 			padding-bottom: 6px;
 		}
 
-		ul.attrList {
+		.attrList {
 			margin: 0;
 			padding: 0;
 			display: flex;
 			flex-wrap: wrap;
 			list-style: none;
-			margin:-8px;
+      gap: 8px;
 		}
 
-		ul.attrList li.itemAttrList {
+		.itemAttrList {
 			display: flex;
 			align-items: center;
 			padding: 8px 20px;
 			line-height: 1.6;
-			border: 1px solid var(--tm-color);
+			border: 1px solid var(--color-primary);
 			font-weight: 500;
 			border-radius: 0.25rem;
-			margin: 8px;
 		}
 
 		.iconAttrList {
@@ -110,12 +122,5 @@ defineProps({
 			opacity: 0.6;
 		}
 
-    @media(max-width: 767px){
-			ul.attrList li.itemAttrList {
-				padding: 8px 16px;
-				line-height: 1.4;
-				font-size: 14px;
-			}
-		}
 
 </style>
