@@ -19,7 +19,7 @@
         <Characteristics :detail="inmuebleSeleted"/>
     </div>
     <div class="container__slider-right">
-        <ContactAgente :infoAgente="inmuebleSeleted.user_id"></ContactAgente>
+        <ContactAgente :infoAgente="infoAgente"></ContactAgente>
     </div>
     </div>
   </template>
@@ -32,7 +32,14 @@ import ContactAgente from '@/views/Inmuebles/components/contactAgente.vue';
   // const route = useRoute()
   const store = useStore()
   const inmuebleSeleted = computed(() => store.state.AppInmuebles.detail)
-  
+  const infoAgente = computed(() => {
+  return {
+    api: 'api/clientes-interested',
+    id_property: inmuebleSeleted.value.id,
+    userId:inmuebleSeleted.value.user_id
+}
+  }
+);
   </script>
   
   <style scoped>

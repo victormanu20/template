@@ -15,28 +15,6 @@
       <div class="form-group" v-for="filter in filtrosSelect" :key="filter.label">
         <SelectFilterPosition :label="filter.label" :optionProps="filter.props" @selectItem="(payload)=>formFilters[filter.id] = payload.id"></SelectFilterPosition>
       </div>
-<!-- 
-      <div class="form-group">
-        <SelectFilter :filter="filtrosSelect.tipo_inmueble.label" :array="filtrosSelect.tipo_inmueble.props.options" @selectItem="(payload)=>formFilters.tipo_inmueble=payload"></SelectFilter>
-      </div>
-      <div class="form-group">
-        <SelectFilter :filter="filtrosSelect.tipo_negocio.label" :array="filtrosSelect.tipo_negocio.props.options" @selectItem="(payload)=>formFilters.tipo_negocio=payload"></SelectFilter>
-      </div>
-      <div class="form-group">
-        <SelectFilterPosition :filter="filtrosSelect.pais_id.label" :array="filtrosSelect.pais_id.props.options" @selectItem="(payload)=>formFilters.pais_id=payload"></SelectFilterPosition>
-      </div>
-      <div class="form-group">
-        <SelectFilterPosition :filter="filtrosSelect.estado_id.label" :array="filtrosSelect.estado_id.props.options" @selectItem="(payload)=>formFilters.estado_id=payload"></SelectFilterPosition>
-      </div>
-      <div class="form-group">
-        <SelectFilterPosition :filter="filtrosSelect.ciudad_id.label" :array="filtrosSelect.ciudad_id.props.options" @selectItem="(payload)=>formFilters.ciudad_id=payload"></SelectFilterPosition>
-      </div>
-      <div class="form-group">
-        <SelectFilterPosition :filter="filtrosSelect.zona_id.label" :array="filtrosSelect.zona_id.props.options" @selectItem="(payload)=>formFilters.zona_id=payload"></SelectFilterPosition>
-      </div>
-      <div class="form-group">
-        <SelectFilterPosition :filter="filtrosSelect.barrio_id.label" :array="filtrosSelect.barrio_id.props.options"  @selectItem="(payload)=>formFilters.barrio_id=payload"></SelectFilterPosition>
-      </div> -->
     </div>
   </div>
 </template>

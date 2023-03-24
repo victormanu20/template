@@ -31,7 +31,10 @@
     <component :is="DetailInmueble" :inmuebleSeleted="inmuebleSeleted" @closeModal="sideClose"/>
   </modalSide>
   <v-modal v-if="stateContact"  @close="stateContact=false" titulo="Contactar" size="xs" center>
-      <contactAgente :infoAgente="inmuebleSeleted.user_id"></contactAgente>
+    <contactAgente :infoAgente="infoAgente" @showInfoContact="showInfoContact()"></contactAgente>
+  </v-modal>
+  <v-modal v-if="stateInfo"  @close="stateInfo=false" titulo="Información de contacto" size="xs" center>
+    <infoDetailContact :inmuebleSeleted="inmuebleSeleted" ></infoDetailContact>
   </v-modal>
 </template>
 
@@ -43,31 +46,37 @@ import modalSide from "@/components/modalSide.vue";
 import VModal from "@/components/vModal.vue";
 import DetailInmueble from './components/DetailInmueble.vue';
 import contactAgente from './components/contactAgente.vue';
+import infoDetailContact from './components/infoDetailContact.vue'
 
 import Pagination from '@/components/PaginationMain.vue'
 import FiltersInmuebles from './components/FiltersInmuebles.vue';
 import { computed, onMounted, ref,defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
-const store = useStore()
-let inmuebleSeleted = ref({})
+const store = useStore();
+let inmuebleSeleted = ref({});
 let sideBarState = ref(false);
-let stateContact = ref(false)
-let filterModalState=ref(false)
+let stateContact = ref(false);
+let stateInfo = ref(false);
+let filterModalState=ref(false);
 
 
 defineComponent()
 onMounted(() => {
   store.dispatch('AppInmuebles/getInmuebles');
   store.dispatch('AppInmuebles/getFilters');
-  // if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(mostrarPosicion, errorPosicion);
-  //   } else {
-  //     alert("Tu navegador no soporta la API de geolocalización.");
-  //   }
 });
 
 const inmueblesList = computed(() => store.state.AppInmuebles.grid);
+const infoAgente = computed(() => {
+  return {
+    api: 'api/clientes-interested',
+    id_property: inmuebleSeleted.value.id,
+    userId:inmuebleSeleted.value.user_id
+}
+  }
+);
+
 
 async function showDetail(payload) {
   inmuebleSeleted.value = payload
@@ -88,6 +97,14 @@ function showContactForm(payload){
   stateContact.value = true
 }
 
+function closeModal(){
+  stateContact.value=false
+}
+
+function showInfoContact(){
+  stateInfo.value=true
+  closeModal()
+}
 // function mostrarPosicion(posicion) {
 //       var ubicacion = document.getElementById("ubicacion");
 //       ubicacion.innerHTML = "Latitud: " + posicion.coords.latitude + "<br>Longitud: " + posicion.coords.longitude;

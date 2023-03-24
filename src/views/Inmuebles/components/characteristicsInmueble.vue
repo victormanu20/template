@@ -36,7 +36,7 @@
     </div>
     <div class="wrapperDetalleInmueble googleMaps mt-5">
       <h2 class="tituloDetalleInmueble">Ubicación</h2>
-      <GoogleMap v-if="detail" class="flex-grow-1" v-bind="map" />
+      <GoogleMap v-if="detail" class="flex-grow-1" :map="map" />
     </div>
 
 
@@ -51,7 +51,7 @@ import GoogleMap from '@/components/inmuebles/GoogleMap.vue';
 
 let map = computed(
   ()=>{
-    const { titulo_inmueble, direccion, ciudad_id, estado_id, latitud, longitud, } = this.detail;
+    const { titulo_inmueble, direccion, ciudad_id, estado_id, latitud, longitud, } = props.detail;
     return {
         nombre: titulo_inmueble,
         direccion,
@@ -64,7 +64,7 @@ let map = computed(
   }
 )
 
-defineProps({
+const props = defineProps({
   detail:{
     type:Object,
   }

@@ -46,6 +46,8 @@ defineProps({
 }
 .card-footer-a {
   position: absolute;
+  color: var(--color-secundary);
+  padding: 8px;
   width: 100%;
   height: 80px;
   z-index: 2;
@@ -53,21 +55,12 @@ defineProps({
   background-color: #2eca6a;
 }
 
-.card-info .card-info-title {
-  font-size: 1rem;
-  color: #313131;
-}
-.card-info {
-  list-style: none;
-  margin-bottom: 0;
-  padding: .5rem 0;
-}
-
 .card-box-a{
   position: relative;
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  border-radius: 15px;
 }
 .card-box-a:hover{
   cursor: pointer;

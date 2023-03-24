@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "@fancyapps/ui/dist/fancybox.css";
 import { routes } from '@/router/'
 import {createRouter,createWebHashHistory} from 'vue-router'
+import 'vue3-toastify/dist/index.css';
 
 
 const app = createApp(App);
@@ -33,6 +34,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes, // short for `routes: routes`
 })
+
+
 
 app.use(store)
 app.use(router)

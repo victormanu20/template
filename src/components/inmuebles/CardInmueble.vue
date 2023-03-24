@@ -23,16 +23,23 @@
             {{props.inmueble.area_lote}} m<sup>2</sup>
           </span>
         </li>
-        <li>
-          <h4 class="card-info-title">Beds</h4>
+        <li class="card__iitem">
+          <h4 class="card-info-title">Hab.</h4>
           <span class="card-info_detail">{{ props.inmueble.habitaciones }}</span>
         </li>
-        <li>
-          <h4 class="card-info-title">Baths</h4>
+        <li class="card__iitem">
+          <h4 class="card-info-title">Baños</h4>
           <span class="card-info_detail">{{ props.inmueble.banos }}</span>
         </li>
-        <li>
-          <h4 class="card-info-title">Garages</h4>
+        <li class="card__iitem">
+          <h4 class="card-info-title">Garaje</h4>
+          <span  class="card-info_detail" v-if="props.inmueble.garaje !=null">
+            SI
+          </span>
+          <span  class="card-info_detail" v-else>
+            NO
+          </span>
+
           <!-- <span class="card-info_detail">{{ ( props.inmueble.parqueadero)? props.inmueble.parqueadero:"--" }}</span> -->
         </li>
       </ul>
@@ -80,11 +87,17 @@ const handleShowDetail = (data) =>{
   padding: .5rem 0;
 }
 
+.card__iitem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .card-box-a{
   position: relative;
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  border-radius: 10px;
 }
 .card-box-a:hover{
   cursor: pointer;

@@ -1,60 +1,38 @@
-<template>
-	<GmapMap
-	:center="pos"
-	:zoom="16.75"
-	map-type-id="terrain"
-	style="width: 100%; height: 350px"
-	>
-	<GmapMarker ref="myMarker"
-	:position="google && new google.maps.LatLng(pos.lat, pos.lng)" :clickable="true" @click="map.open = !map.open" />
-	<gmap-info-window :options="infoPopUp" :position="pos" :opened="map.open"  />
-</GmapMap>
+<template >
+	<GoogleMap api-key="AIzaSyB-e9MP04V0fVjgSBRr3HMxhK7exGOc1qM" style="width: 100%; height: 500px" :center="center"
+		:zoom="18">
+		<Marker :options="{ position: center }" />
+		<InfoWindow :options="{ position: center }"> 
+			<h5 class="titleMap">{{map.nombre}}</h5>
+			<ul class="infoMap">
+				<li class="address"><b>{{map.direccion}}</b></li>
+				<li> <span>{{ map.estado }}</span>, <span>{{ map.ciudad }}</span></li>
+			</ul>
+		
+		</InfoWindow>
+
+
+	</GoogleMap>
 </template>
+<script setup>
+import {  defineProps,ref,onMounted } from 'vue'
+import { GoogleMap, Marker,InfoWindow   } from 'vue3-google-map'
 
-<script>
-	import {gmapApi} from 'vue2-google-maps'
-	export default {
-
-		name: 'GoogleMap',
-		props:['nombre', 'direccion', 'ciudad', 'estado', 'lat', 'lng'],
-		data () {
-			return {
-				map:{
-					open: true,
-				},
-			}
-		},
-		computed: {
-			google: gmapApi,
-			pos(){
-				return {
-					lat: this.lat ? Number(this.lat) : 0,
-					lng: this.lng ? Number(this.lng) : 0,
-				}
-			},
-			infoPopUp(){
-				return {
-					content: `
-						<h5 class="titleMap">${this.nombre}</h5>
-						<ul class="infoMap">
-							<li class="address"><b>${this.direccion}</b></li>
-							${this.estado ? '<li class="city">' + this.ciudad + ', ' + this.estado + '</li>' : ''}
-						</ul>
-					`,
-					pixelOffset: {
-						width: 0,
-						height: -35
-					}
-				}
-			}
-		},
+const props = defineProps({
+	map: {
+		type: Object
 	}
+})
+let center = ref(null)
+onMounted(() => {
+	console.log(Number(props.map.lat))
+	console.log(Number(props.map.lng))
+	center.value = { lat:Number(props.map.lat), lng: Number(props.map.lng) }
+})
 </script>
 
-<style lang="css">
-	.titleMap {font-size: 14px;font-weight: 600;text-transform: uppercase;margin-bottom: 10px;}
-
-	.infoMap {padding: 0;list-style: none;margin: 0;font-size: 12px;}
-
-	.infoMap b {font-weight: 500;}
+<style scoped>
+.titleMap{
+	color: var(--color-primary);
+}
 </style>

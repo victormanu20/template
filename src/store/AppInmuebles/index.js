@@ -37,7 +37,7 @@ export default {
 
 				pais_id:{
 					id:'pais_id',
-					label: 'Paises',
+					label: 'Pais',
 					value: null,
 					api: 'states',
 					props: {
@@ -177,7 +177,7 @@ export default {
 					method: 'post',
 				}).then( res => {
 					let {data} = res.data.data;
-					ctx.commit('SET_LIST', data.slice(0, 4));
+					ctx.commit('SET_LIST', data.slice(4, 8));
 					resolve(true);
 				}).catch( err => {
 					resolve(false);
