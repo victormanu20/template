@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { defineProps,ref,watch,onMounted } from 'vue';
+import { defineProps,ref,watch } from 'vue';
 import { useStore } from 'vuex';
 const store = useStore()
 
@@ -47,12 +47,8 @@ const props=defineProps({
   }
 })
 
-onMounted(() => {
-	console.log(props.LastPages)
-}),
 
 watch(pageOn ,()=>{
-  console.log(pageOn.value);
 	getData(
 		{page: pageOn.value},
 		{
@@ -90,18 +86,30 @@ function getData(params, {overlay, dispatch}){
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .page-item{
 	cursor: pointer;
+}
+
+.page-link{
+	color: black;
+}
+
+.page-item.active .page-link{
+	background-color: var(--color-primary);
+	color: white;
 }
 .icon-button{
 	width: 0.9em;
 	height: 0.9em;
 	fill: var(--color-primary);
 }
-.icon-button:hover{
+.page-item .page-link:hover{
 	background-color: var(--color-primary);
-	fill: var(--c);
+	svg{
+		fill: white;
+	}
+
 }
 .show__item{
 	display: block;

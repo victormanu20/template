@@ -99,7 +99,10 @@ defineProps({
 
 <style scoped>
 .metaInmueble {
+	display: flex;
+	flex-direction: column;
 	width: 100%;
+	gap: 10px;
 }
 
 .agenteInmueble {

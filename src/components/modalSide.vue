@@ -3,7 +3,7 @@
 		:style="sideBar ? {maxWidth: `${maxWidth[size]}px`, left: 'auto', width: '100%'} : {overflowY: 'auto'}">
 		<div class="sideBarOverlay"></div>
 		<div class="vModelOverlay" ref="overlay">
-			<div class="vModalContainer" :style="!sideBar ? { maxWidth: `${maxWidth[size]}px` } : {}">
+			<div class="vModalContainer active__side" :style="!sideBar ? { maxWidth: `${maxWidth[size]}px` } : {}">
 				<div class="vModalHeader">
 					<span class="text">{{ titulo }}</span>
 					<div class="icons d-flex align-items-center justify-content-end flex-grow-1">
@@ -155,6 +155,15 @@ export default {
 	position: relative;
 }
 
+@keyframes slideOutY {
+  from {
+    transform: translatey(100%);
+  }
+  to {
+    transform: translatey(0);
+  }
+}
+
 .vModalHeader,
 .vModalFooter {
 	padding: 20px 25px;
@@ -272,5 +281,20 @@ export default {
 	min-height: 0 !important;
 	padding: 0;
 }
+.active__side{
+	transition: transform 0.3s ease-out;
+	transform: translateX(100%);
+	animation: slideOut 1s forwards;
+
+}
+
+@keyframes slideOut {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+	}
 }
 </style>

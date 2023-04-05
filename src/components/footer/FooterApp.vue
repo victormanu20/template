@@ -57,16 +57,13 @@
 </template>
 
 <script setup>
-import { computed, onMounted,ref } from 'vue';
+import { computed,ref } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore()
 let configuration = computed(() => store.state.AppData.data.configuracion);
 let year = ref(new Date().getFullYear());
 
-onMounted(() => {
-    console.log('configuration', configuration)
-})
 </script>
 
 <style lang="scss" scoped >

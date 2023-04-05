@@ -56,7 +56,7 @@ const initSlider = () =>{
 <style lang="scss">
   .carousel__button{
     svg{
-      fill: var(--color-secundary);
+      fill: var(--color-text);
     }
   }
 </style>

@@ -61,7 +61,7 @@ const handleShowDetail = (data) =>{
 
 <style scoped>
 .card-title-a{
-  color: var(--color-secundary);
+  color: var(--color-primary);
   font-size: 1.3rem;
 }
 
@@ -74,12 +74,13 @@ const handleShowDetail = (data) =>{
   position: absolute;
   z-index: 2;
   bottom: 0;
-  background-color: #2eca6a;
+  background-color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .card-info .card-info-title {
   font-size: 1rem;
-  color: #313131;
+  color:var(--color-text);
 }
 .card-info {
   list-style: none;
@@ -158,7 +159,7 @@ const handleShowDetail = (data) =>{
   z-index: 2;
 }
 .card-info_detail{
-  color: var(--color-secundary);
+  color: var(--color-text);
 }
 .card-box-a:hover .card-overlay-a-content {
     bottom: 60px;

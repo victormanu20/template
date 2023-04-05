@@ -1,5 +1,5 @@
 <template >
-	<GoogleMap api-key="AIzaSyB-e9MP04V0fVjgSBRr3HMxhK7exGOc1qM" style="width: 100%; height: 500px" :center="center"
+	<GoogleMap :api-key="api_maps" style="width: 100%; height: 100%" :center="center"
 		:zoom="18">
 		<Marker :options="{ position: center }" />
 		<InfoWindow :options="{ position: center }"> 
@@ -24,9 +24,8 @@ const props = defineProps({
 	}
 })
 let center = ref(null)
+let api_maps = ref('AIzaSyB-e9MP04V0fVjgSBRr3HMxhK7exGOc1qM')
 onMounted(() => {
-	console.log(Number(props.map.lat))
-	console.log(Number(props.map.lng))
 	center.value = { lat:Number(props.map.lat), lng: Number(props.map.lng) }
 })
 </script>

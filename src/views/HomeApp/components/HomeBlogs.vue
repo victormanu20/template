@@ -30,7 +30,6 @@ onMounted(
   }
 )
 
-console.log(BlogsList.value)
 
 
 </script>

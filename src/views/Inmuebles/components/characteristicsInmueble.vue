@@ -3,7 +3,7 @@
     <detailPrice  :detailPrice="detail"/>
     <!-- DESCRIPCION GENERAL -->
     <h2 class="tituloDetalleInmueble">Descripción general</h2>
-    <div class=" textoDetalleInmueble mb-4">
+    <div class=" textoDetalleInmueble mb-1">
       <p>{{detail.descripcion}}</p>
     </div>
     <metaDataInmuble :detail="detail"/>
@@ -20,7 +20,6 @@
             </ul>
           </div>
       </div>
-      
       <div class="row mt-4"  v-if="detail.caracteristicas_externas.length>0">
         <div class="col">
           <h2 class="tituloDetalleInmueble">Caracteristicas Externas</h2>
@@ -73,9 +72,15 @@ const props = defineProps({
 </script>
 
 <style lang="css" scoped>
+.textoDetalleInmueble{
+  text-align: justify;
+}
 
 .metaDataInmueble{
+  display: flex;
   width: 100%;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .container__dataInmueble{

@@ -3,7 +3,8 @@
     <label for="exampleFormControlSelect1" class="select-filter__label">{{ label }}</label>
     <div class="container__select" >
       <select class="form-select" v-model="select" v-if="optionProps"> 
-        <option  :value="item" v-for="(item) in optionProps.options" :key="item">{{ item[optionProps.label] }}</option>
+        <option  :value="item" v-for="(item) in optionProps.options" :key="item">{{ item[optionProps.label] }}
+        </option>
       </select>
       <button class="btn_close" v-if="select" @click="handleClickEmpty()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"  width="12">
@@ -16,12 +17,13 @@
 <script setup>
 import { defineProps,watch,ref,defineEmits } from 'vue';
 
-let select = ref('')
+let select = ref()
 const emit = defineEmits(['selectItem']);
 
 watch(select,()=>{
   emit('selectItem',select.value)
 })
+
 defineProps({
   label:{
     type:String
@@ -31,6 +33,7 @@ defineProps({
   }
 })
 function handleClickEmpty(){
+  console.log('empty')
   select.value=null
 }
 

@@ -3,7 +3,7 @@
     <div class="container-inmuebles__header">
       <h3 class="title__inmuebles">INMUEBLES</h3>
       <button class="btn-filter" @click="showFilter()">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments-horizontal" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2eca6a" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments-horizontal icon__filter" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"  stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <circle cx="14" cy="6" r="2" />
           <line x1="4" y1="6" x2="12" y2="6" />
@@ -20,14 +20,21 @@
     </div>
     <div class="main">
       <FiltersInmuebles class="sideBar" :class="[(filterModalState)?'active':'']" :filterModalState="filterModalState" @closeFilter="() =>filterModalState=false"></FiltersInmuebles>
-      <div class="inmuebles__grid" v-if="inmueblesList.data">
-            <CardInmuebleList v-for="inmueble in inmueblesList.data" :key="inmueble.id" :inmueble="inmueble"
-              @showDetail="showDetail" @showContactForm="showContactForm" />
+      <div class="main__inmuebles" v-if="inmueblesList.data.length>0">
+        <div class="inmuebles__grid" >
+          <CardInmuebleList v-for="inmueble in inmueblesList.data" :key="inmueble.id" :inmueble="inmueble"
+            @showDetail="showDetail" @showContactForm="showContactForm" />
+        </div>
+        <Pagination :LastPages="inmueblesList.last_page" />
+      </div>
+      <div class="not__found" v-else>
+        <h5>
+          No se han encontrado Inmuebles
+        </h5>
       </div>
     </div>
-    <Pagination :LastPages="inmueblesList.last_page"  />
   </div>
-  <modalSide v-if="sideBarState" @close="sideClose" ref="modalInmueble" titulo="Detalle del inmueble"   size="md">
+  <modalSide v-if="sideBarState" @close="sideClose" ref="modalInmueble" titulo="Detalle del inmueble"   size="md" >
     <component :is="DetailInmueble" :inmuebleSeleted="inmuebleSeleted" @closeModal="sideClose"/>
   </modalSide>
   <v-modal v-if="stateContact"  @close="stateContact=false" titulo="Contactar" size="xs" center>
@@ -123,6 +130,11 @@ function showInfoContact(){
 </style>
 
 <style scoped lang="scss">
+
+.icon__filter{
+  fill: var(--color-primary);
+  stroke: var(--color-primary);
+}
 .container-inmuebles{
   display: flex;
   flex-direction: column;
@@ -134,6 +146,18 @@ function showInfoContact(){
   display: flex;
   width: 100%;
   gap: 2rem;
+}
+.not__found{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  color: var(--color-primary);
+}
+.main__inmuebles{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
 }
 .sideBar{
   min-width: 250px;
@@ -165,6 +189,7 @@ function showInfoContact(){
   grid-auto-rows: auto;
 }
 
+
 @media (max-width:980px) {
   .sideBar{
     display: none;
@@ -177,7 +202,10 @@ function showInfoContact(){
   }
   .sideBar.active{
     display: flex;
+    transform: translateX(0);
+    animation: slideIn 1s forwards;
   }
+
   .btn-filter{
   display: flex;
   align-items: center;
@@ -199,4 +227,7 @@ function showInfoContact(){
   padding: 0 1rem;
 }
 }
+
+
+
 </style>

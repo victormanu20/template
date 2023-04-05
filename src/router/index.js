@@ -6,9 +6,14 @@ import InmueblesSelected from '@/views/InmueblesSelectedView.vue';
 // import InmuebleDetail from '@/components/view/inmueble/InmuebleDetail'
 
 const routes = [
+    // {
+    //   path: '/',
+    //   redirect: { name: 'inicio' } 
+    // },
     {
       path: '/',
       name: 'inicio',
+      text:'inicio',
       component: HomeApp
     },
     {

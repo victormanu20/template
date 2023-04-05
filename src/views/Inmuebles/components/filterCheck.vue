@@ -1,9 +1,7 @@
 <template>
     <label for="exampleFormControlSelect1" class="select-filter__label">{{ props.label }}</label>
     <div class="container__check">
-        <div v-for="(item) in arrayCheck" :key="item.id" >
-            <button class="check__btn" @click="handleCheck(item.id)" :class="[(checkItem==item.id)?'check__btn-checked':'']">{{ item.label }}</button>
-        </div>
+            <button  v-for="(item) in arrayCheck" :key="item.id" class="check__btn" @click="handleCheck(item.id)" :class="[(checkItem==item.id)?'check__btn-checked':'']">{{ item.label }}</button>
     </div>
 </template>
 <script setup>

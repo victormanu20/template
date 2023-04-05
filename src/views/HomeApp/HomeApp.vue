@@ -3,7 +3,7 @@
   <div  class="container__home">
       <CarrouselAppHome/>
       <InmueblesHome/>
-      <BlogsHome/>
+      <!-- <BlogsHome/> -->
     </div>
 </template> 
 
@@ -12,7 +12,6 @@
   // COMPONENTS
   import CarrouselAppHome from './components/CarrouselApp.vue';
   import InmueblesHome from './components/InmueblesHome.vue';
-  import BlogsHome from './components/HomeBlogs.vue';
 
 </script>
 

@@ -13,20 +13,24 @@
         <FilterCheck :props="item" @handleCheckItem="(payload)=>formFilters[item.id] = payload"></FilterCheck>
       </div>
       <div class="form-group" v-for="filter in filtrosSelect" :key="filter.label">
-        <SelectFilterPosition :label="filter.label" :optionProps="filter.props" @selectItem="(payload)=>formFilters[filter.id] = payload.id"></SelectFilterPosition>
+        <SelectFilterPosition 
+        :label="filter.label" 
+        :optionProps="filter.props"
+         @selectItem="(payload)=> (payload )?formFilters[filter.id] = payload.id:formFilters[filter.id] =payload"
+         >
+         </SelectFilterPosition>
       </div>
     </div>
   </div>
 </template>
 
 <script setup >
-import { onMounted,ref,computed,watch,reactive,defineProps,defineEmits } from 'vue';
+import { onMounted,computed,watch,reactive,defineProps,defineEmits } from 'vue';
 import { useStore } from 'vuex';
 import FilterCheck from './filterCheck.vue';
 // import SelectFilter from './SelectFilter.vue'
 import SelectFilterPosition from './SelectFilterPosition.vue';
 const store = useStore();
-let select = ref();
 const emit = defineEmits(['closeFilter']);
 
 let filterCheck= reactive([
@@ -40,16 +44,16 @@ let filterCheck= reactive([
   }
 ])
 
-const props=defineProps({
+defineProps({
   filterModalState:{
     type:Boolean
   }
 })
 
-const formFilters= reactive({
+let formFilters= reactive({
   tipo_inmueble:'',
   tipo_negocio:'',
-  pais_id:'',
+  pais_id:'48',
   estado_id:'',
   ciudad_id:'',
   zona_id:'',
@@ -65,9 +69,6 @@ const formFilters= reactive({
 let filtrosSelect = computed(()=> store.state.AppInmuebles.filtros.filtro)
 
 onMounted(() => {
-  console.log(select.value)
-  console.log('filtros',filtrosSelect.value);
-  console.log('state',props.filterModalState)
   watchFilterCheck()
   watchFilterPosition()
   watchFilterType()
@@ -79,6 +80,7 @@ function closeFilter(){
 }
 
 function getUbicacion(id, location,prop){
+  console.log('ejecuto',id)
   store.dispatch('AppInmuebles/getUbicacion', {id, location, prop});
 }
 
@@ -87,9 +89,9 @@ function watchFilterPosition(){
   //RECORRER LAS DFTES PROPS DE LOS FILTROS POR UBICACION
   for (let i = 0; i < props.length; i++) {
     watch(()=>formFilters[props[i]], () =>{
-      console.log(formFilters[props[i]]);
+      console.log('position',formFilters[props[i]]);
       if(formFilters[props[i]]!=null){
-      let id= formFilters[props[i]].id;
+      let id= formFilters[props[i]];
         let location = filtrosSelect.value[props[i]].api;
         let prop = props[i+1]
         getUbicacion(
@@ -110,7 +112,6 @@ function watchFilterType(){
   let props = ['tipo_inmueble','tipo_negocio'];
   //RECORRER LAS DFTES PROPS DE LOS FILTROS POR UBICACION
   for (let i = 0; i < props.length; i++) {
-    console.log(i)
     watch(()=>formFilters[props[i]], () =>{
       setFilters()
     })
@@ -119,10 +120,8 @@ function watchFilterType(){
 function watchFilterCheck(){
   //RECORRER LAS DFTES PROPS DE LOS FILTROS POR UBICACION
   for (let item of filterCheck) {
-    console.log(item.id)
     watch(()=>formFilters[item.id], () =>{
       setFilters()
-      console.log(item.id)
     })
   }
 }
@@ -130,10 +129,8 @@ function watchFilterCheck(){
 function setFilters() {
   let body = {};
   for (let prop in formFilters) {
-    console.log('prop',prop)
     if (formFilters[prop]){
       body[prop] = formFilters[prop];
-      console.log('body',body)
     }
     else{
       delete body[prop];
@@ -158,6 +155,8 @@ function getInmuebles(data = null) {
   flex-direction: column;
   gap: 1rem;
   background-color: var(--background-color-filter);
+  border: 2px solid var(--color-primary);
+  border-radius: 0 15px 15px 0;
   height: auto;
   padding: 16px;
 }

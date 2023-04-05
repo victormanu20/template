@@ -13,24 +13,24 @@
         <div class="container__interested">
             <p>¡Estoy interesado!</p>
         </div>
-        <div>
-            <div class="mb-3">
+        <div class="form__agent">
+            <div class="mb-3 form__group-agent">
                 <label for="exampleInputName" class="form-label">Nombre completo:</label>
                 <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" v-model="formContact.name">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form__group-agent">
                 <label for="exampleInputEmail" class="form-label">Correo electronico</label>
                 <input type="email" class="form-control" id="exampleInputEmail" v-model="formContact.email">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form__group-agent">
                 <label for="exampleInputCel" class="form-label">celular</label>
                 <input type="Number" class="form-control" id="exampleInputCel" v-model="formContact.cell_phone">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form__group-agent">
                 <label for="exampleFormControlTextarea1" class="form-label">Comentarios</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="formContact.comments"></textarea>
             </div>
-            <div class="mb-3 form-check">
+            <div class="mb-3 form-check form__group-agent">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="accept">
                 <label class="form-check-label" for="exampleCheck1">Acepto la política de tratamiento de datos personales</label>
             </div>
@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { defineProps,onMounted,ref,defineEmits } from 'vue';
+import { defineProps,ref,defineEmits } from 'vue';
 import { useStore } from 'vuex';
 import { toast } from 'vue3-toastify';
 
@@ -73,9 +73,6 @@ let formContact = ref({
     email:null,
     phone:null,
     comments:null,
-})
-onMounted(() => {
-    console.log(props.infoAgente)
 })
 
 function sendInfoContact(api,data){
@@ -108,7 +105,6 @@ function ValidateInfo() {
             id_user:props.infoAgente.userId.id
         }
         for(let prop in formContact.value){
-            console.log(prop)
             if(formContact.value[prop]){
                 Object.assign(data,{[prop]:formContact.value[prop]})
             }
@@ -129,6 +125,13 @@ function openLink() {
 </script>
 
 <style scoped lang="scss">
+
+.form__agent{
+    width: 100%;
+}
+.form__group-agent{
+    width: 100%;
+}
 .contactAgent {
     display: flex;
     gap: 1rem;

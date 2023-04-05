@@ -8,7 +8,8 @@
         <CardInmueble  
         v-for="inmueble in inmueblesList" 
         :key="inmueble.id" 
-        :inmueble="inmueble"  
+        :inmueble="inmueble"
+        @click="handlePageDetail(inmueble)"
         />
       </div>
     </div>
@@ -31,6 +32,17 @@ onMounted(
 function ShowInmuebles(){
   router.push({
         name: 'inmuebles',
+})
+}
+
+function handlePageDetail(inmueble){
+  console.log(inmueble.slug)
+  store.commit('AppInmuebles/SET_DETAIL',inmueble)
+  router.push({
+        name: 'inmuebles-detalle',
+        params:{
+          slug:inmueble.slug
+        }
 })
 }
 </script>

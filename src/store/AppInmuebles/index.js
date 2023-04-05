@@ -98,7 +98,6 @@ export default {
 	mutations: {
 		/* Start Inmuebles */
 		CLEAN_FILTER_POSITION: (state, value) => {
-			console.log('value',value)
 			state.filtros.filtro[value].props.options  = [];
 		},
 		SET_DETAIL: (state, value) => {

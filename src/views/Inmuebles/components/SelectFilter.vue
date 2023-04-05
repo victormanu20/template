@@ -20,7 +20,6 @@ let select = ref('')
 const emit = defineEmits(['selectItem']);
 
 watch(select,()=>{
-  console.log(select.value)
   emit('selectItem',select.value)
 })
 defineProps({
