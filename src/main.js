@@ -7,6 +7,8 @@ import "@fancyapps/ui/dist/fancybox.css";
 import { routes } from '@/router/'
 import {createRouter,createWebHashHistory} from 'vue-router'
 import 'vue3-toastify/dist/index.css';
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 
 
 const app = createApp(App);
@@ -38,6 +40,7 @@ const router = createRouter({
 
 
 app.use(store)
+app.use(Antd)
 app.use(router)
 app.use(bootstrap)
 app.mount('#app')

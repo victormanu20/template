@@ -79,7 +79,6 @@ function changeFavicon(src) {
   padding: 0;
 }
 html{
-  background-color: var(--color-secundary);
 
 }
 a {
